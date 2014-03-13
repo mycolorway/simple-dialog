@@ -1,0 +1,50 @@
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  min-height: 1em;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+.dialog .dialog-wrapper {
+  padding: 20px;
+}
+.dialog .dialog-content .dialog-title {
+  font-size: 24px;
+  color: #84A099;
+  margin: 10px 0 20px 0;
+}
+.dialog .dialog-content p {
+  padding: 20px 0 10px 0;
+  font-size: 18px;
+  color: #000;
+  line-height: 1.8;
+}
+.dialog .dialog-content p b {
+  color: #CD3746;
+}
+.dialog .dialog-buttons {
+  padding: 20px 0 0 0;
+  overflow: hidden;
+}
+.dialog .dialog-buttons .btn {
+  float: left;
+  margin: 0 20px 0 0;
+}
+.dialog .dialog-buttons .btn:last-child {
+  margin-right: 0;
+}
+.dialog .dialog-remove {
+  position: absolute;
+  padding: 3px 6px;
+  top: 8px;
+  right: 8px;
+  color: #777;
+}
+.dialog .dialog-remove:hover {
+  color: #333;
+}

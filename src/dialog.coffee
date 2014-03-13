@@ -1,120 +1,121 @@
-class Url
-  constructor: (url) ->
-    url ||= location.toString()
-    return null unless url
-
-    @_url = url
-    @protocol = ""
-    @host = ""
-    @port = ""
-    @pathname = ""
-    @search = {}
-    @hash = ""
-
-    url = url.split("//")
-
-    if url.length is 1
-      url = url[0]
-    else
-      @protocol = url[0]
-      url = url[1]
-
-    arr = url.split("/")
-    host = arr[0].split(":")
-    @host = host[0]
-
-    if host.length > 1
-      @port = host[1]
-
-    if arr.length > 1
-      prefix = "/"
-    else
-      prefix = ""
-
-    @pathname = "#{ prefix }#{ arr.slice(1, arr.length).join('/').split('?')[0].split('#')[0] }"
-    @hash = url.split("#")[1] || ""
-    @search = Url.parseParams (url.split("?")[1] || "").split("#")[0]
+class Dialog extends Widget
+  opts:
+    content: null
+    width: 600
+    height: "auto"
+    modal: false
+    cls: ""
+    showRemoveButton: true
+    buttons: ['close']
 
 
-  @parseParams: (str) ->
-    obj = {}
+  _tpl: """
+    <div class="dialog">
+      <a class="dialog-remove" href="javascript:;"><i class="fa fa-times"></i></a>
+      <div class="dialog-wrapper">
+        <div class="dialog-content"></div>
+        <div class="dialog-buttons"></div>
+      </div>
+    <div>
+  """
 
-    for param in str.split('&')
-      [k, v] = param.split('=')
-      obj[k] = v if k
-
-    obj
-
-
-  @serializeParams: (obj) ->
-    return "" unless obj
-    ([k, v].join('=') for k, v of obj).join('&')
-
-
-  # @isEmptyObj: (obj) ->
-  #   for k, v of obj
-  #     if obj.hasOwnProperty(k)
-  #       return false
-
-  #   true
+  _modal: """
+    <div class="dialog-modal"></div>
+  """
 
 
-  toString: (type="absolute") ->
-    url = ""
-
-    return url unless /absolute|relative/.test(type)
-
-    if type is "absolute"
-      if @protocol
-        url += "#{ @protocol }//"
-
-      if @host
-        url += "#{ @host }"
-
-      if @port
-        url += ":#{ @port }"
-
-    url += @pathname
-
-    search = Url.serializeParams(@search)
-    if search
-      url += "?#{ search }"
-
-    if @hash
-      url += "##{ @hash }"
-
-    url
+  _button: """
+    <button type="button"></button>
+  """
 
 
-  setParam: () ->
-    args = arguments
-
-    if args.length is 1 and typeof args[0] is "object"
-      obj = args[0]
-    else if args.length is 2
-      obj = {}
-      obj[args[0].toString()] = args[1].toString()
-    else
-      return false
-
-    @search ||= {}
-
-    for k, v of obj
-      @search[k.toString()] = v.toString()
-
-    @search
-
-
-  getParam: (name) ->
-    @search[name]
-
-
-  removeParam: (name) ->
-    delete @search[name]
+  _init: () ->
+    Dialog.removeAll()
+    @_render()
+    @_bind()
+    @el.data("dialog", @)
+    @refresh()
 
 
 
-@simple = {} unless @simple
+  _render: () ->
+    @el = $(@_tpl).addClass @opts.cls
+    @wrapper = @el.find(".dialog-wrapper")
+    @removeButton = @el.find(".dialog-remove")
+    @contentWrap = @el.find(".dialog-content")
+    @buttonWrap = @el.find(".dialog-buttons")
 
-@simple.url = (url) ->
-  new Url(url)
+    @el.css
+      width: @opts.width
+      height: @opts.height
+
+    # TODO should encode content for xss
+    # or the all template should be handle with template engine
+    @contentWrap.append(@opts.content)
+
+    unless @opts.showRemoveButton
+      @removeButton.remove()
+
+    for button in @opts.buttons
+      btn = $(@_button)
+
+      if button is "close"
+        btn.html("关闭")
+          .on("click", @remove)
+      else
+        btn.html(button.content || "关闭")
+          .on("click", button.callback || $.noop)
+
+      btn.appendTo(@buttonWrap)
+
+    @el.appendTo("body")
+
+    if @opts.modal
+      @modal = $(@_modal).appendTo("body")
+
+
+  _bind: () ->
+    @removeButton.on "click.simple-dialog", (e) =>
+      e.preventDefault()
+      @remove()
+
+    if @modal
+      @modal.on "click.simple-dialog", (e) =>
+        @remove()
+
+    $(document).on "keydown.simple-dialog", (e) =>
+      if e.which is 27
+        @remove()
+
+
+  _unbind: () ->
+    @removeButton.off(".simple-dialog")
+    @modal.off(".simple-dialog") if @modal
+    $(document).off(".simple-dialog")
+
+
+  remove: () =>
+    @_unbind()
+    @modal.remove() if @modal
+    @el.remove()
+
+
+  refresh: () ->
+    @el.css
+      marginLeft: - @el.width() / 2
+      marginTop: - @el.height() / 2
+
+    @contentWrap.height(@wrapper.height() - @buttonWrap.height())
+
+
+  @removeAll: () ->
+    $(".dialog").each () ->
+      dialog = $(@).data("dialog")
+      dialog.remove()
+
+
+
+@simple ||= {}
+
+@simple.dialog = (opts) ->
+  return new Dialog opts
