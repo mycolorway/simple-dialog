@@ -30,6 +30,9 @@ class Dialog extends Widget
 
 
   _init: () ->
+    if @opts.content is null
+      throw "[Dialog] - 内容不能为空"
+
     Dialog.removeAll()
     @_render()
     @_bind()
@@ -57,16 +60,17 @@ class Dialog extends Widget
       @removeButton.remove()
 
     for button in @opts.buttons
-      btn = $(@_button)
-
       if button is "close"
-        btn.html("关闭")
-          .on("click", @remove)
-      else
-        btn.html(button.content || "关闭")
-          .on("click", button.callback || $.noop)
+        button =
+          callback: @remove
 
-      btn.appendTo(@buttonWrap)
+      button = $.extend({}, Dialog.defaultButton, button)
+
+      $(@_button)
+        .addClass button.cls
+        .html button.content
+        .on "click", button.callback
+        .appendTo @buttonWrap
 
     @el.appendTo("body")
 
@@ -94,6 +98,11 @@ class Dialog extends Widget
     $(document).off(".simple-dialog")
 
 
+  setContent: (content) ->
+    @contentWrap.html(content)
+    @refresh()
+
+
   remove: () =>
     @_unbind()
     @modal.remove() if @modal
@@ -101,11 +110,12 @@ class Dialog extends Widget
 
 
   refresh: () ->
+    @contentWrap.height("auto")
+    @contentWrap.height(@wrapper.height() - @buttonWrap.height())
+
     @el.css
       marginLeft: - @el.width() / 2
       marginTop: - @el.height() / 2
-
-    @contentWrap.height(@wrapper.height() - @buttonWrap.height())
 
 
   @removeAll: () ->
@@ -114,8 +124,50 @@ class Dialog extends Widget
       dialog.remove()
 
 
+  @defaultButton:
+    content: "关闭"
+    cls: "btn"
+    callback: $.noop
+
+
 
 @simple ||= {}
 
-@simple.dialog = (opts) ->
-  return new Dialog opts
+$.extend(@simple, {
+
+  dialog: (opts) ->
+    return new Dialog opts
+
+  message: (opts) ->
+    opts = $.extend(opts, {
+      buttons: [{
+        content: "知道了"
+        callback: (e) ->
+          $(e.target).closest(".dialog")
+            .data("dialog").remove()
+      }]
+    })
+
+    return new Dialog opts
+
+  confirm: (opts) ->
+    opts = $.extend({
+      buttons: [{
+        content: "确定"
+        callback: (e) ->
+          $(e.target).closest(".dialog")
+            .data("dialog").remove()
+      }, {
+        content: "取消"
+        callback: (e) ->
+          $(e.target).closest(".dialog")
+            .data("dialog").remove()
+      }]
+    }, opts)
+
+    return new Dialog opts
+})
+
+@simple.dialog.removeAll = Dialog.removeAll
+@simple.dialog.setDefaultButton = (opts) ->
+  Dialog.defaultButton = opts

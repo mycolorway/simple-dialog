@@ -4,7 +4,7 @@
   left: 50%;
   width: 400px;
   min-height: 1em;
-  z-index: 9999;
+  z-index: 99999;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -14,18 +14,8 @@
   padding: 20px;
 }
 .dialog .dialog-content .dialog-title {
-  font-size: 24px;
-  color: #84A099;
-  margin: 10px 0 20px 0;
-}
-.dialog .dialog-content p {
-  padding: 20px 0 10px 0;
-  font-size: 18px;
-  color: #000;
-  line-height: 1.8;
-}
-.dialog .dialog-content p b {
-  color: #CD3746;
+  font-size: 1.7em;
+  margin: 0 0 0.5em 0;
 }
 .dialog .dialog-buttons {
   padding: 20px 0 0 0;
@@ -47,4 +37,18 @@
 }
 .dialog .dialog-remove:hover {
   color: #333;
+}
+
+.dialog-modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99998;
+  background-color: #000;
+  opacity: 0.66;
+  cursor: pointer;
 }

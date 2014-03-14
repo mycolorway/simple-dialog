@@ -31,8 +31,9 @@ module.exports = (grunt) ->
         tasks: ['coffee']
     jasmine:
       pivotal:
-        src: 'lib/**/*.js'
+        src: 'lib/dialog.js'
         options:
+          vendor: ['lib/module.js', 'externals/jquery-2.0.3.js']
           specs: 'spec/lib/dialog-spec.js'
           summary: true
           host : 'http://127.0.0.1:8000/'

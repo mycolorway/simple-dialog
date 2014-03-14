@@ -25,8 +25,21 @@
 		$(function() {
 			$("#showDialog").on("click", function(e) {
 				simple.dialog({
-					content: "hello world"
+					content: "<h4 class=dialog-title>hello dialog</h4><p>this is a demo</p>",
+					modal: true
 				})
+			});
+
+			$("#showMessage").on("click", function(e) {
+				simple.message({
+					content: "hello message"
+				});
+			});
+
+			$("#showConfirm").on("click", function(e) {
+				simple.confirm({
+					content: "hello confirm"
+				});
 			});
 		});
 	</script>
@@ -34,7 +47,7 @@
 </head>
 <body>
 	<button type="button" id="showDialog">show dialog</button>
+	<button type="button" id="showMessage">show message</button>
+	<button type="button" id="showConfirm">show confirm</button>
 </body>
 </html>
-
-
