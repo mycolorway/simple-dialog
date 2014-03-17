@@ -9,24 +9,24 @@ class Dialog extends Widget
     buttons: ['close']
 
 
-  _tpl: """
-    <div class="dialog">
-      <a class="dialog-remove" href="javascript:;"><i class="fa fa-times"></i></a>
-      <div class="dialog-wrapper">
-        <div class="dialog-content"></div>
-        <div class="dialog-buttons"></div>
-      </div>
-    <div>
-  """
+  @_tpl:
+    dialog: """
+      <div class="simple-dialog">
+        <a class="simple-dialog-remove" href="javascript:;"><i class="fa fa-times"></i></a>
+        <div class="simple-dialog-wrapper">
+          <div class="simple-dialog-content"></div>
+          <div class="simple-dialog-buttons"></div>
+        </div>
+      <div>
+    """
 
-  _modal: """
-    <div class="dialog-modal"></div>
-  """
+    modal: """
+      <div class="simple-dialog-modal"></div>
+    """
 
-
-  _button: """
-    <button type="button"></button>
-  """
+    button: """
+      <button type="button"></button>
+    """
 
 
   _init: () ->
@@ -42,11 +42,11 @@ class Dialog extends Widget
 
 
   _render: () ->
-    @el = $(@_tpl).addClass @opts.cls
-    @wrapper = @el.find(".dialog-wrapper")
-    @removeButton = @el.find(".dialog-remove")
-    @contentWrap = @el.find(".dialog-content")
-    @buttonWrap = @el.find(".dialog-buttons")
+    @el = $(Dialog._tpl.dialog).addClass @opts.cls
+    @wrapper = @el.find(".simple-dialog-wrapper")
+    @removeButton = @el.find(".simple-dialog-remove")
+    @contentWrap = @el.find(".simple-dialog-content")
+    @buttonWrap = @el.find(".simple-dialog-buttons")
 
     @el.css
       width: @opts.width
@@ -66,7 +66,7 @@ class Dialog extends Widget
 
       button = $.extend({}, Dialog.defaultButton, button)
 
-      $(@_button)
+      $(Dialog._tpl.button)
         .addClass button.cls
         .html button.content
         .on "click", button.callback
@@ -75,7 +75,7 @@ class Dialog extends Widget
     @el.appendTo("body")
 
     if @opts.modal
-      @modal = $(@_modal).appendTo("body")
+      @modal = $(Dialog._tpl.modal).appendTo("body")
 
 
   _bind: () ->
@@ -119,7 +119,7 @@ class Dialog extends Widget
 
 
   @removeAll: () ->
-    $(".dialog").each () ->
+    $(".simple-dialog").each () ->
       dialog = $(@).data("dialog")
       dialog.remove()
 
@@ -143,7 +143,7 @@ $.extend(@simple, {
       buttons: [{
         content: "知道了"
         callback: (e) ->
-          $(e.target).closest(".dialog")
+          $(e.target).closest(".simple-dialog")
             .data("dialog").remove()
       }]
     })
@@ -155,12 +155,12 @@ $.extend(@simple, {
       buttons: [{
         content: "确定"
         callback: (e) ->
-          $(e.target).closest(".dialog")
+          $(e.target).closest(".simple-dialog")
             .data("dialog").remove()
       }, {
         content: "取消"
         callback: (e) ->
-          $(e.target).closest(".dialog")
+          $(e.target).closest(".simple-dialog")
             .data("dialog").remove()
       }]
     }, opts)

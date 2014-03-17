@@ -44,4 +44,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
   grunt.loadNpmTasks 'grunt-contrib-connect'
 
-  grunt.registerTask 'test', ['coffee', 'connect', 'jasmine']
+  grunt.registerTask 'test', ['sass', 'coffee', 'connect', 'jasmine']

@@ -1,4 +1,4 @@
-.dialog {
+.simple-dialog {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -10,36 +10,36 @@
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-.dialog .dialog-wrapper {
+.simple-dialog .simple-dialog-wrapper {
   padding: 20px;
 }
-.dialog .dialog-content .dialog-title {
+.simple-dialog .simple-dialog-content .simple-dialog-title {
   font-size: 1.7em;
   margin: 0 0 0.5em 0;
 }
-.dialog .dialog-buttons {
+.simple-dialog .simple-dialog-buttons {
   padding: 20px 0 0 0;
   overflow: hidden;
 }
-.dialog .dialog-buttons .btn {
+.simple-dialog .simple-dialog-buttons .btn {
   float: left;
-  margin: 0 20px 0 0;
+  margin: 0 10px 0 0;
 }
-.dialog .dialog-buttons .btn:last-child {
+.simple-dialog .simple-dialog-buttons .btn:last-child {
   margin-right: 0;
 }
-.dialog .dialog-remove {
+.simple-dialog .simple-dialog-remove {
   position: absolute;
   padding: 3px 6px;
   top: 8px;
   right: 8px;
   color: #777;
 }
-.dialog .dialog-remove:hover {
+.simple-dialog .simple-dialog-remove:hover {
   color: #333;
 }
 
-.dialog-modal {
+.simple-dialog-modal {
   width: 100%;
   height: 100%;
   position: fixed;

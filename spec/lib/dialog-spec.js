@@ -5,7 +5,7 @@
       dialog = simple.dialog({
         content: "hello world"
       });
-      return expect($("body > .dialog").length).toBe(1);
+      return expect($("body > .simple-dialog").length).toBe(1);
     });
     it("should see throw error if no content", function() {
       return expect(simple.dialog).toThrow();
@@ -22,15 +22,15 @@
       });
       expect($(".dialog-1").length).toBe(0);
       expect($(".dialog-2").length).toBe(1);
-      return expect($(".dialog").length).toBe(1);
+      return expect($(".simple-dialog").length).toBe(1);
     });
     it("should remove when click remove button", function() {
       var dialog;
       dialog = simple.dialog({
         content: "hello"
       });
-      dialog.el.find(".dialog-remove").click();
-      return expect($(".dialog").length).toBe(0);
+      dialog.el.find(".simple-dialog-remove").click();
+      return expect($(".simple-dialog").length).toBe(0);
     });
     it("should remove when click modal", function() {
       var dialog, modal;
@@ -38,10 +38,10 @@
         modal: true,
         content: "hello"
       });
-      modal = $(".dialog-modal");
+      modal = $(".simple-dialog-modal");
       expect(modal.length).toBe(1);
       modal.click();
-      return expect($(".dialog-modal").length).toBe(0);
+      return expect($(".simple-dialog-modal").length).toBe(0);
     });
     it("should remove when click the button created by config [close]", function() {
       var dialog;
@@ -51,7 +51,7 @@
         content: "hello"
       });
       dialog.el.find("button").click();
-      return expect($(".dialog").length).toBe(0);
+      return expect($(".simple-dialog").length).toBe(0);
     });
     it("should remove when call simple.dialog.removeAll", function() {
       var dialog;
@@ -59,7 +59,7 @@
         content: "hello"
       });
       simple.dialog.removeAll();
-      return expect($(".dialog").length).toBe(0);
+      return expect($(".simple-dialog").length).toBe(0);
     });
     it("should change default class when set defaultButton", function() {
       var button, dialog;
@@ -88,7 +88,7 @@
         which: 27
       });
       $(document).trigger(esc);
-      return expect($(".dialog").length).toBe(0);
+      return expect($(".simple-dialog").length).toBe(0);
     });
     return it("should change position and height when content change and refresh", function() {
       var content, dialog, nHeight, nTop, oHeight, oTop;

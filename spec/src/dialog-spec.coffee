@@ -3,7 +3,7 @@ describe "dialog", ->
     dialog = simple.dialog
       content: "hello world"
 
-    expect($("body > .dialog").length).toBe(1)
+    expect($("body > .simple-dialog").length).toBe(1)
 
 
   it "should see throw error if no content", ->
@@ -21,15 +21,15 @@ describe "dialog", ->
 
     expect($(".dialog-1").length).toBe(0)
     expect($(".dialog-2").length).toBe(1)
-    expect($(".dialog").length).toBe(1)
+    expect($(".simple-dialog").length).toBe(1)
 
 
   it "should remove when click remove button", ->
     dialog = simple.dialog
       content: "hello"
 
-    dialog.el.find(".dialog-remove").click()
-    expect($(".dialog").length).toBe(0)
+    dialog.el.find(".simple-dialog-remove").click()
+    expect($(".simple-dialog").length).toBe(0)
 
 
   it "should remove when click modal", ->
@@ -37,10 +37,10 @@ describe "dialog", ->
       modal: true
       content: "hello"
 
-    modal = $(".dialog-modal")
+    modal = $(".simple-dialog-modal")
     expect(modal.length).toBe(1)
     modal.click()
-    expect($(".dialog-modal").length).toBe(0)
+    expect($(".simple-dialog-modal").length).toBe(0)
 
 
   it "should remove when click the button created by config [close]", ->
@@ -50,7 +50,7 @@ describe "dialog", ->
       content: "hello"
 
     dialog.el.find("button").click()
-    expect($(".dialog").length).toBe(0)
+    expect($(".simple-dialog").length).toBe(0)
 
 
   it "should remove when call simple.dialog.removeAll", ->
@@ -58,7 +58,7 @@ describe "dialog", ->
       content: "hello"
 
     simple.dialog.removeAll()
-    expect($(".dialog").length).toBe(0)
+    expect($(".simple-dialog").length).toBe(0)
 
 
   it "should change default class when set defaultButton", ->
@@ -84,7 +84,7 @@ describe "dialog", ->
 
     esc = $.Event "keydown.simple-dialog", which: 27
     $(document).trigger(esc)
-    expect($(".dialog").length).toBe(0)
+    expect($(".simple-dialog").length).toBe(0)
 
 
   it "should change position and height when content change and refresh", ->
