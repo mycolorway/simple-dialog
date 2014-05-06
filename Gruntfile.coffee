@@ -5,38 +5,46 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
 
     sass:
-      styles:
+      dialog:
         options:
           style: 'expanded'
         files:
           'styles/dialog.css': 'styles/dialog.scss'
-    connect:
-      uses_defaults: {}
+
     coffee:
-      module:
-        files:
-          'lib/module.js': 'externals/simple-module/src/module.coffee'
       dialog:
         files:
           'lib/dialog.js': 'src/dialog.coffee'
       spec:
         files:
-          'spec/lib/dialog-spec.js': 'spec/src/dialog-spec.coffee'
+          'spec/dialog-spec.js': 'spec/dialog-spec.coffee'
+
     watch:
       styles:
         files: ['styles/*.scss']
         tasks: ['sass']
       scripts:
-        files: ['src/**/*.coffee', 'spec/src/**/*.coffee']
+        files: ['src/*.coffee', 'spec/*.coffee']
         tasks: ['coffee']
+      jasmine:
+        files: [
+          'styles/dialog.css',
+          'lib/dialog.js',
+          'specs/*.js'
+        ],
+        tasks: 'jasmine:test:build'
+
     jasmine:
-      pivotal:
-        src: 'lib/dialog.js'
+      test:
+        src: ['lib/dialog.js']
         options:
-          vendor: ['lib/module.js', 'externals/jquery-2.0.3.js']
-          specs: 'spec/lib/dialog-spec.js'
-          summary: true
-          host : 'http://127.0.0.1:8000/'
+          outfile: 'spec/index.html'
+          styles: 'styles/dialog.css'
+          specs: 'spec/dialog-spec.js'
+          vendor: [
+            'vendor/bower/jquery/dist/jquery.min.js',
+            'vendor/bower/simple-module/lib/module.js'
+          ]
 
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -44,4 +52,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
   grunt.loadNpmTasks 'grunt-contrib-connect'
 
-  grunt.registerTask 'test', ['sass', 'coffee', 'connect', 'jasmine']
+  grunt.registerTask 'default', ['coffee', 'jasmine:test:build', 'watch']
