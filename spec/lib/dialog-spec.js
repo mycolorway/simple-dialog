@@ -77,7 +77,7 @@
       });
       button = dialog.buttonWrap.find('button');
       expect(button.html()).toEqual("tinyfive");
-      return expect(button.attr('class')).toEqual("tinyfive");
+      return expect(/tinyfive/.test(button.attr('class'))).toBeTruthy();
     });
     it("should remove when ESC keydown", function() {
       var dialog, esc;

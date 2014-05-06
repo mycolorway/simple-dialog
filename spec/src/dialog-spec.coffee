@@ -75,7 +75,7 @@ describe "dialog", ->
     button = dialog.buttonWrap.find('button')
 
     expect(button.html()).toEqual("tinyfive")
-    expect(button.attr('class')).toEqual("tinyfive")
+    expect(/tinyfive/.test(button.attr('class'))).toBeTruthy()
 
 
   it "should remove when ESC keydown", ->

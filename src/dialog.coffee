@@ -59,18 +59,22 @@ class Dialog extends Widget
     unless @opts.showRemoveButton
       @removeButton.remove()
 
-    for button in @opts.buttons
-      if button is "close"
-        button =
-          callback: @remove
+    if @opts.buttons is null
+      @buttonWrap.remove()
+    else
+      for button in @opts.buttons
+        if button is "close"
+          button =
+            callback: @remove
 
-      button = $.extend({}, Dialog.defaultButton, button)
+        button = $.extend({}, Dialog.defaultButton, button)
 
-      $(Dialog._tpl.button)
-        .addClass button.cls
-        .html button.content
-        .on "click", button.callback
-        .appendTo @buttonWrap
+        $(Dialog._tpl.button)
+          .addClass 'btn'
+          .addClass button.cls
+          .html button.content
+          .on "click", button.callback
+          .appendTo @buttonWrap
 
     @el.appendTo("body")
 
@@ -126,7 +130,6 @@ class Dialog extends Widget
 
   @defaultButton:
     content: "关闭"
-    cls: "btn"
     callback: $.noop
 
 
@@ -139,7 +142,7 @@ $.extend(@simple, {
     return new Dialog opts
 
   message: (opts) ->
-    opts = $.extend(opts, {
+    opts = $.extend({width: 450}, opts, {
       buttons: [{
         content: "知道了"
         callback: (e) ->
@@ -152,16 +155,21 @@ $.extend(@simple, {
 
   confirm: (opts) ->
     opts = $.extend({
+      confirmCallback: $.noop
+      width: 450
       buttons: [{
         content: "确定"
         callback: (e) ->
-          $(e.target).closest(".simple-dialog")
-            .data("dialog").remove()
+          dialog = $(e.target).closest(".simple-dialog").data("dialog")
+          dialog.opts.confirmCallback(e, true)
+          dialog.remove()
       }, {
         content: "取消"
+        cls: "btn-x"
         callback: (e) ->
-          $(e.target).closest(".simple-dialog")
-            .data("dialog").remove()
+          dialog = $(e.target).closest(".simple-dialog").data("dialog")
+          dialog.opts.confirmCallback(e, false)
+          dialog.remove()
       }]
     }, opts)
 

@@ -16,7 +16,7 @@
 
   .simple-dialog-content {
     .simple-dialog-title {
-      font-size: 1.7em;
+      font-size: 1.5em;
       margin: 0 0 0.5em 0;
       // color: #84A099;
       // margin: 10px 0 20px 0;
@@ -69,10 +69,6 @@
   right: 0;
   z-index: 99998;
   background-color: #000;
-  opacity: 0.66;
+  opacity: 0.36;
   cursor: pointer;
-  // @include transition(250ms, opacity);
-  // &.hidden {
-  //   opacity: 0;
-  // }
 }
