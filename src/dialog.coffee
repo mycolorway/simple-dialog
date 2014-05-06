@@ -4,6 +4,7 @@ class Dialog extends Widget
     width: 600
     height: "auto"
     modal: false
+    clickModalRemove: true
     cls: ""
     showRemoveButton: true
     buttons: ['close']
@@ -80,6 +81,7 @@ class Dialog extends Widget
 
     if @opts.modal
       @modal = $(Dialog._tpl.modal).appendTo("body")
+      @modal.css("cursor", "default") unless @opts.clickModalRemove
 
 
   _bind: () ->
@@ -87,7 +89,7 @@ class Dialog extends Widget
       e.preventDefault()
       @remove()
 
-    if @modal
+    if @modal and @opts.clickModalRemove
       @modal.on "click.simple-dialog", (e) =>
         @remove()
 
@@ -98,7 +100,7 @@ class Dialog extends Widget
 
   _unbind: () ->
     @removeButton.off(".simple-dialog")
-    @modal.off(".simple-dialog") if @modal
+    @modal.off(".simple-dialog") if @modal and @opts.clickModalRemove
     $(document).off(".simple-dialog")
 
 
