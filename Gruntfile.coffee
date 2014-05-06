@@ -28,13 +28,21 @@ module.exports = (grunt) ->
         tasks: ['coffee']
       jasmine:
         files: [
-          'styles/dialog.css',
-          'lib/dialog.js',
+          'styles/dialog.css'
+          'lib/dialog.js'
           'specs/*.js'
         ],
         tasks: 'jasmine:test:build'
 
     jasmine:
+      terminal:
+        src: ['lib/dialog.js']
+        options:
+          specs: 'spec/dialog-spec.js'
+          vendor: [
+            'vendor/bower/jquery/dist/jquery.min.js'
+            'vendor/bower/simple-module/lib/module.js'
+          ]
       test:
         src: ['lib/dialog.js']
         options:
@@ -42,7 +50,7 @@ module.exports = (grunt) ->
           styles: 'styles/dialog.css'
           specs: 'spec/dialog-spec.js'
           vendor: [
-            'vendor/bower/jquery/dist/jquery.min.js',
+            'vendor/bower/jquery/dist/jquery.min.js'
             'vendor/bower/simple-module/lib/module.js'
           ]
 
@@ -50,6 +58,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
-  grunt.loadNpmTasks 'grunt-contrib-connect'
 
-  grunt.registerTask 'default', ['coffee', 'jasmine:test:build', 'watch']
+  grunt.registerTask 'default', ['sass', 'coffee', 'jasmine:test:build', 'watch']
+  grunt.registerTask 'test', ['sass', 'coffee', 'jasmine:terminal']

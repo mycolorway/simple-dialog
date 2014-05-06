@@ -120,8 +120,8 @@ class Dialog extends Widget
     @contentWrap.height(@wrapper.height() - @buttonWrap.height())
 
     @el.css
-      marginLeft: - @el.width() / 2
-      marginTop: - @el.height() / 2
+      marginLeft: - @el.outerWidth() / 2
+      marginTop: - @el.outerHeight() / 2
 
 
   @removeAll: () ->

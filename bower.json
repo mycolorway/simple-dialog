@@ -9,7 +9,7 @@
   "description": "a customizable dialog widget",
   "main": "lib/dialog.js",
   "keywords": [
-    "gallery"
+    "dialog"
   ],
   "license": "MIT",
   "ignore": [
