@@ -8,7 +8,7 @@ class Dialog extends Widget
     cls: ""
     showRemoveButton: true
     buttons: ['close']
-    autofocus: true
+    focusButton: null
 
 
   @_tpl:
@@ -80,8 +80,11 @@ class Dialog extends Widget
 
     @el.appendTo("body")
 
-    if @opts.autofocus
-      @buttonWrap.find(".btn:not(.btn-x)").focus()
+    if @opts.focusButton is null
+      @buttonWrap.find(".btn:first").focus()
+    else if @opts.focusButton isnt false
+      console.log @opts.focusButton
+      @buttonWrap.find(@opts.focusButton).focus()
 
     if @opts.modal
       @modal = $(Dialog._tpl.modal).appendTo("body")
