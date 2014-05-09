@@ -102,7 +102,7 @@
       $(document).trigger(esc);
       return expect($(".simple-dialog").length).toBe(0);
     });
-    return it("should change position and height when content change and refresh", function() {
+    it("should change position and height when content change and refresh", function() {
       var content, dialog, nHeight, nTop, oHeight, oTop;
       dialog = simple.dialog({
         content: "hello"
@@ -115,6 +115,14 @@
       nHeight = dialog.el.outerHeight();
       expect(oTop).not.toEqual(nTop);
       return expect(oHeight).not.toEqual(nHeight);
+    });
+    return it("should focus button when create dialog", function() {
+      var button, dialog;
+      dialog = simple.dialog({
+        content: "hello"
+      });
+      button = dialog.buttonWrap.find('.btn:not(.btn-x)');
+      return expect(button.is(":focus")).toBe(true);
     });
   });
 

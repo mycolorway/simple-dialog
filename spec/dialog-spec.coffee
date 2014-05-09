@@ -115,6 +115,13 @@ describe "dialog", ->
     expect(oTop).not.toEqual(nTop)
     expect(oHeight).not.toEqual(nHeight)
 
+  it "should focus button when create dialog", ->
+    dialog = simple.dialog
+      content: "hello"
+
+    button = dialog.buttonWrap.find('.btn:not(.btn-x)')
+    expect(button.is(":focus")).toBe(true)
+
 
 describe "message", ->
   it "should see only one button called 知道了", ->
