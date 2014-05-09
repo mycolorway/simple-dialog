@@ -80,7 +80,7 @@ class Dialog extends Widget
 
     @el.appendTo("body")
 
-    unless @opts.focusButton
+    if @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
 
     if @opts.modal
