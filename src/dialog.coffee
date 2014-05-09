@@ -8,7 +8,7 @@ class Dialog extends Widget
     cls: ""
     showRemoveButton: true
     buttons: ['close']
-    focusButton: null
+    focusButton: ".btn:first"
 
 
   @_tpl:
@@ -80,10 +80,7 @@ class Dialog extends Widget
 
     @el.appendTo("body")
 
-    if @opts.focusButton is null
-      @buttonWrap.find(".btn:first").focus()
-    else if @opts.focusButton isnt false
-      console.log @opts.focusButton
+    unless @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
 
     if @opts.modal
