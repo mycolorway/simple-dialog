@@ -8,6 +8,7 @@ class Dialog extends Widget
     cls: ""
     showRemoveButton: true
     buttons: ['close']
+    focusButton: ".btn:first"
 
 
   @_tpl:
@@ -78,6 +79,9 @@ class Dialog extends Widget
           .appendTo @buttonWrap
 
     @el.appendTo("body")
+
+    unless @opts.focusButton
+      @buttonWrap.find(@opts.focusButton).focus()
 
     if @opts.modal
       @modal = $(Dialog._tpl.modal).appendTo("body")

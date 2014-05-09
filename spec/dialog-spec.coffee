@@ -116,6 +116,14 @@ describe "dialog", ->
     expect(oHeight).not.toEqual(nHeight)
 
 
+  it "should focus button when create dialog and focusButton is null", ->
+    dialog = simple.dialog
+      content: "hello"
+
+    button = dialog.buttonWrap.find('.btn:first')
+    expect(button.is(":focus")).toBe(true)
+
+
 describe "message", ->
   it "should see only one button called 知道了", ->
     message = simple.message
@@ -129,3 +137,13 @@ describe "message", ->
     button = message.el.find("button")
     expect(button.length).toBe(1)
     expect(button.html()).toEqual("知道了")
+
+
+describe "confirm", ->
+  it "should focus [close] when create dialog and focusButton is .btn-x", ->
+    confirm = simple.confirm
+      content: "hello"
+      focusButton: ".btn-x"
+
+    button = confirm.buttonWrap.find('.btn-x')
+    expect(button.is(":focus")).toBe(true)
