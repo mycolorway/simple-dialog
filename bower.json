@@ -7,7 +7,7 @@
     "kshift <kshift.lv@gmail.com>"
   ],
   "description": "a customizable dialog widget",
-  "main": "lib/dialog.js",
+  "main": "demo.html",
   "keywords": [
     "dialog"
   ],
@@ -23,6 +23,6 @@
   "dependencies": {
     "jquery": "~2.1.0",
     "fontawesome": "~4.0.3",
-    "simple-module": "~1.0.0"
+    "simple-module": "master"
   }
 }
