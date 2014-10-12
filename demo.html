@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>A simple dialog widget</title>
+	<title>Simple Dialog Sample</title>
 	<meta charset="utf-8" />
 
 	<link media="all" rel="stylesheet" type="text/css" href="vendor/bower/font-awesome/css/font-awesome.css" />
@@ -19,19 +19,19 @@
 	</style>
 
 	<script type="text/javascript" src="vendor/bower/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="lib/module.js"></script>
+	<script type="text/javascript" src="vendor/bower/simple-module/lib/module.js"></script>
 	<script type="text/javascript" src="lib/dialog.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$("#showDialog").on("click", function(e) {
-				simple.dialog({
+				simple.dialog.dialog({
 					content: "<h4 class=dialog-title>hello dialog</h4><p>this is a demo</p>",
 					modal: true
 				})
 			});
 
 			$("#showMessage").on("click", function(e) {
-				simple.message({
+				simple.dialog.message({
 					content: "hello message",
 					modal: true,
 					clickModalRemove: false
@@ -39,7 +39,7 @@
 			});
 
 			$("#showConfirm").on("click", function(e) {
-				simple.confirm({
+				simple.dialog.confirm({
 					content: "hello confirm"
 				});
 			});
@@ -48,8 +48,10 @@
 
 </head>
 <body>
-	<button type="button" id="showDialog">show dialog</button>
-	<button type="button" id="showMessage">show message</button>
-	<button type="button" id="showConfirm">show confirm</button>
+  <div class="wrapper">
+    <button type="button" id="showDialog">show dialog</button>
+    <button type="button" id="showMessage">show message</button>
+    <button type="button" id="showConfirm">show confirm</button>
+  </div>
 </body>
 </html>

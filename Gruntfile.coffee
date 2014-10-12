@@ -5,14 +5,18 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
 
     sass:
-      dialog:
+      styles:
         options:
+          bundleExec: true
           style: 'expanded'
+          sourcemap: 'none'
         files:
           'styles/dialog.css': 'styles/dialog.scss'
 
     coffee:
-      dialog:
+      options:
+        bare: true
+      src:
         files:
           'lib/dialog.js': 'src/dialog.coffee'
       spec:
@@ -25,7 +29,7 @@ module.exports = (grunt) ->
         tasks: ['sass']
       scripts:
         files: ['src/*.coffee', 'spec/*.coffee']
-        tasks: ['coffee']
+        tasks: ['coffee', 'umd']
       jasmine:
         files: [
           'styles/dialog.css'
@@ -54,10 +58,27 @@ module.exports = (grunt) ->
             'vendor/bower/simple-module/lib/module.js'
           ]
 
+    umd:
+      all:
+        src: 'lib/dialog.js'
+        template: 'umd.hbs'
+        amdModuleId: 'simple-dialog'
+        objectToExport: 'dialog'
+        globalAlias: 'dialog'
+        deps:
+          'default': ['$', 'SimpleModule']
+          amd: ['jquery', 'simple-module']
+          cjs: ['jquery', 'simple-module']
+          global:
+            items: ['jQuery', 'SimpleModule']
+            prefix: ''
+
+
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
+  grunt.loadNpmTasks 'grunt-umd'
 
-  grunt.registerTask 'default', ['sass', 'coffee', 'jasmine:test:build', 'watch']
+  grunt.registerTask 'default', ['sass', 'coffee', 'umd', 'jasmine:test:build', 'watch']
   grunt.registerTask 'test', ['sass', 'coffee', 'jasmine:terminal']

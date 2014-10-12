@@ -1,4 +1,4 @@
-class Dialog extends Widget
+class Dialog extends SimpleModule
   opts:
     content: null
     width: 600
@@ -139,11 +139,7 @@ class Dialog extends Widget
     callback: $.noop
 
 
-
-@simple ||= {}
-
-$.extend(@simple, {
-
+dialog =  {
   dialog: (opts) ->
     return new Dialog opts
 
@@ -178,10 +174,9 @@ $.extend(@simple, {
           dialog.remove()
       }]
     }, opts)
-
     return new Dialog opts
-})
 
-@simple.dialog.removeAll = Dialog.removeAll
-@simple.dialog.setDefaultButton = (opts) ->
-  Dialog.defaultButton = opts
+  removeAll: Dialog.removeAll
+  setDefaultButton: (opts) ->
+    Dialog.defaultButton = opts
+}

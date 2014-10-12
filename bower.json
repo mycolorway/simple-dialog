@@ -23,6 +23,6 @@
   "dependencies": {
     "jquery": "~2.1.0",
     "fontawesome": "~4.0.3",
-    "simple-module": "master"
+    "simple-module": "~2.0.0"
   }
 }
