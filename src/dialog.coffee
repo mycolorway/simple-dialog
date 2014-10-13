@@ -157,7 +157,7 @@ dialog =  {
   message: (opts) ->
     opts = $.extend({width: 450}, opts, {
       buttons: [{
-        content: Dialog.prototype._t 'known'
+        content: Dialog._t 'known'
         callback: (e) ->
           $(e.target).closest(".simple-dialog")
             .data("dialog").remove()
@@ -171,13 +171,13 @@ dialog =  {
       confirmCallback: $.noop
       width: 450
       buttons: [{
-        content: Dialog.prototype._t 'ok'
+        content: Dialog._t 'ok'
         callback: (e) ->
           dialog = $(e.target).closest(".simple-dialog").data("dialog")
           dialog.opts.confirmCallback(e, true)
           dialog.remove()
       }, {
-        content: Dialog.prototype._t 'cancel'
+        content: Dialog._t 'cancel'
         cls: "btn-x"
         callback: (e) ->
           dialog = $(e.target).closest(".simple-dialog").data("dialog")

@@ -1,32 +1,94 @@
 # Simple Dialog
 
-Simple Dialog 是一个继承自[Simple Module](https://github.com/mycolorway/simple-module)的组件，同时依赖于JQuery。
+一个简单的组件，用于在渲染一个对话框组件。。
 
-Simple Dialog导出了simple.dialog对象，借助它之下的方法进行初始化
+依赖项：
 
-#### 初始化方法
-可以分别借助`dialog` `message` `confirm` 初始化对象，其都有共同的参数：
+- JQuery 2.0+
+- [Simple Module](https://github.com/mycolorway/simple-module)
+
+### 使用方法
+首先，需要在页面里引用相关脚本以及css
+
+```html
+<link media="all" rel="stylesheet" type="text/css" href="path/to/dialog.css" />
+<script type="text/javascript" src="path/to/jquery.min.js"></script>
+<script type="text/javascript" src="path/to/module.js"></script>
+<script type="text/javascript" src="path/to/dialog.js"></script>
 
 ```
-opts = {
-    content: [String 需要显示的内容]
-    width: [Number 宽度 默认600]
-    height: [Number 高度 默认'auto']
-    modal: [Boolean 是否有背景遮罩 默认为false]
-    clickModalRemove: [Boolean，是否点击遮罩层就退出dialog 默认为true]
-    cls: [String 自定义类]
-    showRemoveButton: [Boolean 是否显示关闭按钮 默认为true]
-    buttons: [Array，包含需要显示的button数组'close']
-    focusButton: [Selector 默认focus的按钮 默认".btn:first"]
+
+可以通过simple.dialog下的三个方法，实例化dialog组件
+
+```js
+simple.dialog.dialog({
+  content: "<h4 class=dialog-title>hello dialog</h4><p>this is a demo</p>",
+  modal: true
+});
+
+
+simple.dialog.message({
+  content: "hello message",
+  modal: true,
+  clickModalRemove: false
+});
+
+simple.dialog.confirm({
+  content: "hello confirm"
+});
+
+```
+
+### API 文档
+
+####初始化选项
+
+__content__
+
+dialog组件需要显示的内容，必选
+  
+__width__
+
+Number，对话框的宽度，默认600
+
+__modal__
+
+Boolean，是否有遮罩层，默认为false
+
+
+__clickModalRemove__
+
+Boolean，是否点击遮罩层自动销毁对话框，默认为true
+
+__cls__
+
+String，给popover增加自定义的类
+
+__showRemoveButton__
+
+Boolean，设置是否显示关闭按钮，默认为true
+
+__focusButton__
+
+Selector String，设置默认focus的按钮，默认为".btn:first"
+
+__buttons__
+
+Obejct/Array，需要显示哪些按钮，按钮如下定制：
+
+```
+{
+  content: [String, 按钮显示的内容],
+  callback: [Function，点击按钮触发的回调函数]
 }
 ```
 
-####其他方法
-同时还有
+#### 方法
 
-```
-removeAll() 清除所有dialog组件
-```
-```
-setDefaultButton() 设置默认的按钮
-```
+__removeAll()__ 
+
+销毁所有dialog实例
+
+__setDefaultButton()__ Object
+
+设置默认的按钮参数，按钮对象如上定制
