@@ -1,4 +1,15 @@
 class Dialog extends SimpleModule
+  @i18n:
+    'zh-CN':
+      cancel: '取消'
+      close: '关闭'
+      ok: '确定'
+      known: '知道了'
+    'en':
+      cancel: 'cancel'
+      close: 'close'
+      ok: 'ok'
+      known: 'ok'
   opts:
     content: null
     width: 600
@@ -33,7 +44,7 @@ class Dialog extends SimpleModule
 
   _init: () ->
     if @opts.content is null
-      throw "[Dialog] - 内容不能为空"
+      throw "[Dialog] - content shouldn't be empty"
 
     Dialog.removeAll()
     @_render()
@@ -135,7 +146,7 @@ class Dialog extends SimpleModule
 
 
   @defaultButton:
-    content: "关闭"
+    content: @::_t 'close'
     callback: $.noop
 
 
@@ -146,7 +157,7 @@ dialog =  {
   message: (opts) ->
     opts = $.extend({width: 450}, opts, {
       buttons: [{
-        content: "知道了"
+        content: Dialog.prototype._t 'known'
         callback: (e) ->
           $(e.target).closest(".simple-dialog")
             .data("dialog").remove()
@@ -160,13 +171,13 @@ dialog =  {
       confirmCallback: $.noop
       width: 450
       buttons: [{
-        content: "确定"
+        content: Dialog.prototype._t 'ok'
         callback: (e) ->
           dialog = $(e.target).closest(".simple-dialog").data("dialog")
           dialog.opts.confirmCallback(e, true)
           dialog.remove()
       }, {
-        content: "取消"
+        content: Dialog.prototype._t 'cancel'
         cls: "btn-x"
         callback: (e) ->
           dialog = $(e.target).closest(".simple-dialog").data("dialog")
