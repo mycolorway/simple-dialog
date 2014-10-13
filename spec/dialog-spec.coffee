@@ -1,20 +1,20 @@
 describe "dialog", ->
   it "should see dialog if everything is ok", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       content: "hello world"
     expect($(".simple-dialog").length).toBe(1)
 
 
   it "should see throw error if no content", ->
-    expect(simple.dialog.dialog).toThrow()
+    expect(simple.dialog).toThrow()
 
 
   it "should exsit only one dialog at same time", ->
-    dialog1 = simple.dialog.dialog
+    dialog1 = simple.dialog
       cls: "dialog-1"
       content: "hello"
 
-    dialog2 = simple.dialog.dialog
+    dialog2 = simple.dialog
       cls: "dialog-2"
       content: "hello"
 
@@ -24,7 +24,7 @@ describe "dialog", ->
 
 
   it "should remove when click remove button", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       content: "hello"
 
     dialog.el.find(".simple-dialog-remove").click()
@@ -32,7 +32,7 @@ describe "dialog", ->
 
 
   it "should remove when click modal", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       modal: true
       content: "hello"
 
@@ -43,7 +43,7 @@ describe "dialog", ->
 
 
   it "should not remove when set clickModalRemove false and click modal", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       modal: true
       clickModalRemove: false
       content: "hello"
@@ -55,7 +55,7 @@ describe "dialog", ->
 
 
   it "should remove when click the button created by config [close]", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       modal: true
       buttons: ["close"]
       content: "hello"
@@ -64,8 +64,8 @@ describe "dialog", ->
     expect($(".simple-dialog").length).toBe(0)
 
 
-  it "should remove when call simple.dialog.dialog.removeAll", ->
-    dialog = simple.dialog.dialog
+  it "should remove when call simple.dialog.removeAll", ->
+    dialog = simple.dialog
       content: "hello"
 
     simple.dialog.removeAll()
@@ -77,7 +77,7 @@ describe "dialog", ->
       content: "tinyfive"
       cls: "tinyfive"
 
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       content: "hello"
       buttons: [{
         test: 1
@@ -90,7 +90,7 @@ describe "dialog", ->
 
 
   it "should remove when ESC keydown", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       content: "hello"
 
     esc = $.Event "keydown.simple-dialog", which: 27
@@ -99,7 +99,7 @@ describe "dialog", ->
 
 
   it "should change position and height when content change and refresh", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       content: "hello"
 
     oTop = dialog.el.css("marginTop")
@@ -116,7 +116,7 @@ describe "dialog", ->
 
 
   it "should focus button when create dialog and focusButton is null", ->
-    dialog = simple.dialog.dialog
+    dialog = simple.dialog
       content: "hello"
 
     button = dialog.buttonWrap.find('.btn:first')

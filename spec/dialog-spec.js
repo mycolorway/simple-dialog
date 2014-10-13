@@ -1,21 +1,21 @@
 describe("dialog", function() {
   it("should see dialog if everything is ok", function() {
     var dialog;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       content: "hello world"
     });
     return expect($(".simple-dialog").length).toBe(1);
   });
   it("should see throw error if no content", function() {
-    return expect(simple.dialog.dialog).toThrow();
+    return expect(simple.dialog).toThrow();
   });
   it("should exsit only one dialog at same time", function() {
     var dialog1, dialog2;
-    dialog1 = simple.dialog.dialog({
+    dialog1 = simple.dialog({
       cls: "dialog-1",
       content: "hello"
     });
-    dialog2 = simple.dialog.dialog({
+    dialog2 = simple.dialog({
       cls: "dialog-2",
       content: "hello"
     });
@@ -25,7 +25,7 @@ describe("dialog", function() {
   });
   it("should remove when click remove button", function() {
     var dialog;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       content: "hello"
     });
     dialog.el.find(".simple-dialog-remove").click();
@@ -33,7 +33,7 @@ describe("dialog", function() {
   });
   it("should remove when click modal", function() {
     var dialog, modal;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       modal: true,
       content: "hello"
     });
@@ -44,7 +44,7 @@ describe("dialog", function() {
   });
   it("should not remove when set clickModalRemove false and click modal", function() {
     var dialog, modal;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       modal: true,
       clickModalRemove: false,
       content: "hello"
@@ -56,7 +56,7 @@ describe("dialog", function() {
   });
   it("should remove when click the button created by config [close]", function() {
     var dialog;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       modal: true,
       buttons: ["close"],
       content: "hello"
@@ -64,9 +64,9 @@ describe("dialog", function() {
     dialog.el.find("button").click();
     return expect($(".simple-dialog").length).toBe(0);
   });
-  it("should remove when call simple.dialog.dialog.removeAll", function() {
+  it("should remove when call simple.dialog.removeAll", function() {
     var dialog;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       content: "hello"
     });
     simple.dialog.removeAll();
@@ -78,7 +78,7 @@ describe("dialog", function() {
       content: "tinyfive",
       cls: "tinyfive"
     });
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       content: "hello",
       buttons: [
         {
@@ -92,7 +92,7 @@ describe("dialog", function() {
   });
   it("should remove when ESC keydown", function() {
     var dialog, esc;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       content: "hello"
     });
     esc = $.Event("keydown.simple-dialog", {
@@ -103,7 +103,7 @@ describe("dialog", function() {
   });
   it("should change position and height when content change and refresh", function() {
     var content, dialog, nHeight, nTop, oHeight, oTop;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       content: "hello"
     });
     oTop = dialog.el.css("marginTop");
@@ -117,7 +117,7 @@ describe("dialog", function() {
   });
   return it("should focus button when create dialog and focusButton is null", function() {
     var button, dialog;
-    dialog = simple.dialog.dialog({
+    dialog = simple.dialog({
       content: "hello"
     });
     button = dialog.buttonWrap.find('.btn:first');

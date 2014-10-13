@@ -21,7 +21,7 @@
 可以通过simple.dialog下的三个方法，实例化dialog组件
 
 ```js
-simple.dialog.dialog({
+simple.dialog({
   content: "<h4 class=dialog-title>hello dialog</h4><p>this is a demo</p>",
   modal: true
 });

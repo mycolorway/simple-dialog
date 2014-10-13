@@ -150,44 +150,42 @@ class Dialog extends SimpleModule
     callback: $.noop
 
 
-dialog =  {
-  dialog: (opts) ->
-    return new Dialog opts
+dialog = (opts) ->
+  return new Dialog opts
 
-  message: (opts) ->
-    opts = $.extend({width: 450}, opts, {
-      buttons: [{
-        content: Dialog._t 'known'
-        callback: (e) ->
-          $(e.target).closest(".simple-dialog")
-            .data("dialog").remove()
-      }]
-    })
+dialog.message = (opts) ->
+  opts = $.extend({width: 450}, opts, {
+    buttons: [{
+      content: Dialog._t 'known'
+      callback: (e) ->
+        $(e.target).closest(".simple-dialog")
+          .data("dialog").remove()
+    }]
+  })
 
-    return new Dialog opts
+  return new Dialog opts
 
-  confirm: (opts) ->
-    opts = $.extend({
-      confirmCallback: $.noop
-      width: 450
-      buttons: [{
-        content: Dialog._t 'ok'
-        callback: (e) ->
-          dialog = $(e.target).closest(".simple-dialog").data("dialog")
-          dialog.opts.confirmCallback(e, true)
-          dialog.remove()
-      }, {
-        content: Dialog._t 'cancel'
-        cls: "btn-x"
-        callback: (e) ->
-          dialog = $(e.target).closest(".simple-dialog").data("dialog")
-          dialog.opts.confirmCallback(e, false)
-          dialog.remove()
-      }]
-    }, opts)
-    return new Dialog opts
+dialog.confirm = (opts) ->
+  opts = $.extend({
+    confirmCallback: $.noop
+    width: 450
+    buttons: [{
+      content: Dialog._t 'ok'
+      callback: (e) ->
+        dialog = $(e.target).closest(".simple-dialog").data("dialog")
+        dialog.opts.confirmCallback(e, true)
+        dialog.remove()
+    }, {
+      content: Dialog._t 'cancel'
+      cls: "btn-x"
+      callback: (e) ->
+        dialog = $(e.target).closest(".simple-dialog").data("dialog")
+        dialog.opts.confirmCallback(e, false)
+        dialog.remove()
+    }]
+  }, opts)
+  return new Dialog opts
 
-  removeAll: Dialog.removeAll
-  setDefaultButton: (opts) ->
-    Dialog.defaultButton = opts
-}
+dialog.removeAll = Dialog.removeAll
+dialog.setDefaultButton = (opts) ->
+  Dialog.defaultButton = opts
