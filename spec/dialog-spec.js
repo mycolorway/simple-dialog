@@ -115,13 +115,13 @@ describe("dialog", function() {
     expect(oTop).not.toEqual(nTop);
     return expect(oHeight).not.toEqual(nHeight);
   });
-  return it("should focus button when create dialog and focusButton is null", function() {
+  return it("should focus first button default", function() {
     var button, dialog;
     dialog = simple.dialog({
       content: "hello"
     });
     button = dialog.buttonWrap.find('.btn:first');
-    return expect(button.is(":focus")).toBe(true);
+    return expect(button[0] === document.activeElement).toBe(true);
   });
 });
 
@@ -141,17 +141,5 @@ describe("message", function() {
     button = message.el.find("button");
     expect(button.length).toBe(1);
     return expect(button.html()).toEqual("知道了");
-  });
-});
-
-describe("confirm", function() {
-  return it("should focus [close] when create dialog and focusButton is .btn-x", function() {
-    var button, confirm;
-    confirm = simple.dialog.confirm({
-      content: "hello",
-      focusButton: ".btn-x"
-    });
-    button = confirm.buttonWrap.find('.btn-x');
-    return expect(button.is(":focus")).toBe(true);
   });
 });

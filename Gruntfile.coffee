@@ -39,14 +39,6 @@ module.exports = (grunt) ->
         tasks: 'jasmine:test:build'
 
     jasmine:
-      terminal:
-        src: ['lib/dialog.js']
-        options:
-          specs: 'spec/dialog-spec.js'
-          vendor: [
-            'vendor/bower/jquery/dist/jquery.min.js'
-            'vendor/bower/simple-module/lib/module.js'
-          ]
       test:
         src: ['lib/dialog.js']
         options:
@@ -81,4 +73,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-umd'
 
   grunt.registerTask 'default', ['sass', 'coffee', 'umd', 'jasmine:test:build', 'watch']
-  grunt.registerTask 'test', ['sass', 'coffee', 'jasmine:terminal']
+  grunt.registerTask 'test', ['sass', 'coffee', 'umd', 'jasmine:test:build']

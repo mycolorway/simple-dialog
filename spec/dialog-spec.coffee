@@ -115,12 +115,15 @@ describe "dialog", ->
     expect(oHeight).not.toEqual(nHeight)
 
 
-  it "should focus button when create dialog and focusButton is null", ->
+  it "should focus first button default", ->
     dialog = simple.dialog
       content: "hello"
 
+    # this is bug of phantomjs
+    # https://github.com/guard/guard-jasmine/issues/48
     button = dialog.buttonWrap.find('.btn:first')
-    expect(button.is(":focus")).toBe(true)
+    # expect(button.is(':focus')).toBe(true)
+    expect(button[0] == document.activeElement).toBe(true)
 
 
 describe "message", ->
@@ -136,13 +139,3 @@ describe "message", ->
     button = message.el.find("button")
     expect(button.length).toBe(1)
     expect(button.html()).toEqual("知道了")
-
-
-describe "confirm", ->
-  it "should focus [close] when create dialog and focusButton is .btn-x", ->
-    confirm = simple.dialog.confirm
-      content: "hello"
-      focusButton: ".btn-x"
-
-    button = confirm.buttonWrap.find('.btn-x')
-    expect(button.is(":focus")).toBe(true)
