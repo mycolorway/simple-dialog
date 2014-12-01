@@ -73,4 +73,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-umd'
 
   grunt.registerTask 'default', ['sass', 'coffee', 'umd', 'jasmine:test:build', 'watch']
-  grunt.registerTask 'test', ['sass', 'coffee', 'umd', 'jasmine:test:build']
+  grunt.registerTask 'test', ['sass', 'coffee', 'umd', 'jasmine:test']
