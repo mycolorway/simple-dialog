@@ -1,7 +1,7 @@
 {
   "name": "simple-dialog",
   "version": "2.0.0",
-  "description": "A lib to parse the url",
+  "description": "a simple dialog widget based on Simple Module",
   "repository": {
     "type": "git",
     "url": "git@github.com:mycolorway/simple-dialog.git"
@@ -10,6 +10,9 @@
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/mycolorway/simple-dialog/issues"
+  },
+  "scripts": {
+      "test": "grunt test --verbose"
   },
   "homepage": "https://github.com/mycolorway/simple-dialog",
   "devDependencies": {
