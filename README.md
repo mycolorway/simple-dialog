@@ -1,4 +1,5 @@
-# Simple Dialog
+# Simple Dialog 
+[![Circle CI](https://circleci.com/gh/mycolorway/simple-dialog.png?style=badge)](https://circleci.com/gh/mycolorway/simple-dialog)
 
 一个简单的组件，用于渲染一个对话框组件。
 
@@ -46,7 +47,7 @@ simple.dialog.confirm({
 __content__
 
 dialog组件需要显示的内容，必选
-  
+
 __width__
 
 Number，对话框的宽度，默认600
@@ -85,7 +86,7 @@ Obejct/Array，需要显示哪些按钮，按钮如下定制：
 
 #### 方法
 
-__removeAll()__ 
+__removeAll()__
 
 销毁所有dialog实例
 
