@@ -23,7 +23,12 @@
 
   .simple-dialog-buttons {
     padding: 20px 0 0 0;
-    overflow: hidden;
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
     .btn {
       float: left;
