@@ -8,7 +8,7 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 }
 .simple-dialog .simple-dialog-wrapper {
   padding: 20px;
@@ -24,9 +24,18 @@
 .simple-dialog .simple-dialog-buttons .btn {
   float: left;
   margin: 0 10px 0 0;
+  cursor: pointer;
 }
 .simple-dialog .simple-dialog-buttons .btn:last-child {
   margin-right: 0;
+}
+.simple-dialog .simple-dialog-buttons .btn.btn-link {
+  border: none;
+  background: none;
+  color: #666666;
+}
+.simple-dialog .simple-dialog-buttons .btn.btn-link:hover {
+  text-decoration: underline;
 }
 .simple-dialog .simple-dialog-remove {
   position: absolute;

@@ -177,7 +177,7 @@ dialog.confirm = (opts) ->
         dialog.remove()
     }, {
       content: Dialog._t 'cancel'
-      cls: "btn-x"
+      cls: "btn-link"
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data("dialog")
         dialog.opts.confirmCallback(e, false)
