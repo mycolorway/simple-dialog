@@ -167,20 +167,20 @@ dialog.message = (opts) ->
 
 dialog.confirm = (opts) ->
   opts = $.extend({
-    confirmCallback: $.noop
+    callback: $.noop
     width: 450
     buttons: [{
       content: Dialog._t 'ok'
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data("dialog")
-        dialog.opts.confirmCallback(e, true)
+        dialog.opts.callback(e, true)
         dialog.remove()
     }, {
       content: Dialog._t 'cancel'
       cls: "btn-link"
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data("dialog")
-        dialog.opts.confirmCallback(e, false)
+        dialog.opts.callback(e, false)
         dialog.remove()
     }]
   }, opts)
