@@ -17,8 +17,13 @@
     "node_modules",
     "vendor",
     "Gruntfile.coffee",
+    "Gemfile",
+    "Gemfile.lock",
     "package.json",
-    "README"
+    "circle.yml",
+    "LICENSE",
+    "umd.hbs",
+    "README.md"
   ],
   "dependencies": {
     "jquery": "2.x",
