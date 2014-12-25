@@ -132,7 +132,7 @@ class Dialog extends SimpleModule
 
   refresh: () ->
     @contentWrap.height("auto")
-    @contentWrap.height(@wrapper.height() - @buttonWrap.height())
+    @contentWrap.height(@wrapper.height() - @buttonWrap.outerHeight(true))
 
     @el.css
       marginLeft: - @el.outerWidth() / 2
