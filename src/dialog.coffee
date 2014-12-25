@@ -52,7 +52,8 @@ class Dialog extends SimpleModule
     @el.data("dialog", @)
     @refresh()
 
-
+    if @opts.focusButton
+      @buttonWrap.find(@opts.focusButton).focus()
 
   _render: () ->
     @el = $(Dialog._tpl.dialog).addClass @opts.cls
@@ -90,9 +91,6 @@ class Dialog extends SimpleModule
           .appendTo @buttonWrap
 
     @el.appendTo("body")
-
-    if @opts.focusButton
-      @buttonWrap.find(@opts.focusButton).focus()
 
     if @opts.modal
       @modal = $(Dialog._tpl.modal).appendTo("body")
