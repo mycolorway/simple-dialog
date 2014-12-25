@@ -131,9 +131,9 @@ describe "message", ->
     message = simple.dialog.message
       content: "hello"
       buttons: [{
-        content: "yes"
+        text: "yes"
       }, {
-        content: "no"
+        text: "no"
       }]
 
     button = message.el.find("button")

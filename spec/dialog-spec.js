@@ -132,9 +132,9 @@ describe("message", function() {
       content: "hello",
       buttons: [
         {
-          content: "yes"
+          text: "yes"
         }, {
-          content: "no"
+          text: "no"
         }
       ]
     });
