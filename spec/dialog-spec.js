@@ -75,7 +75,7 @@ describe("dialog", function() {
   it("should change default class when set defaultButton", function() {
     var button, dialog;
     simple.dialog.setDefaultButton({
-      content: "tinyfive",
+      text: "tinyfive",
       cls: "tinyfive"
     });
     dialog = simple.dialog({

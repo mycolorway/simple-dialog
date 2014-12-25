@@ -74,7 +74,7 @@ describe "dialog", ->
 
   it "should change default class when set defaultButton", ->
     simple.dialog.setDefaultButton
-      content: "tinyfive"
+      text: "tinyfive"
       cls: "tinyfive"
 
     dialog = simple.dialog
