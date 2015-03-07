@@ -43,6 +43,7 @@
 }
 .simple-dialog .simple-dialog-remove {
   position: absolute;
+  text-decoration: none;
   padding: 3px 6px;
   top: 8px;
   right: 8px;
@@ -50,6 +51,9 @@
 }
 .simple-dialog .simple-dialog-remove:hover {
   color: #333;
+}
+.simple-dialog .simple-dialog-remove > i span {
+  font-style: normal;
 }
 
 .simple-dialog-modal {
