@@ -1,6 +1,6 @@
 {
   "name": "simple-dialog",
-  "version": "2.0.0",
+  "version": "1.0.4",
   "homepage": "https://github.com/mycolorway/simple-dialog",
   "authors": [
     "tinyfive <wls860801@gmail.com>",
@@ -27,7 +27,6 @@
   ],
   "dependencies": {
     "jquery": "2.x",
-    "fontawesome": "4.2.x",
     "simple-module": "2.x"
   }
 }
