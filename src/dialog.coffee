@@ -21,6 +21,9 @@ class Dialog extends SimpleModule
     buttons: ['close']
     focusButton: ".btn:first"
 
+  @_mobile: do ->
+    return true if /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/.test navigator.userAgent
+    return false
 
   @_tpl:
     dialog: """
@@ -61,6 +64,8 @@ class Dialog extends SimpleModule
     @removeButton = @el.find(".simple-dialog-remove")
     @contentWrap = @el.find(".simple-dialog-content")
     @buttonWrap = @el.find(".simple-dialog-buttons")
+
+    @el.toggleClass 'simple-dialog-mobile', Dialog._mobile
 
     @el.css
       width: @opts.width
