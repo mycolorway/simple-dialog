@@ -78,7 +78,7 @@ class Dialog extends SimpleModule
     unless @opts.showRemoveButton
       @removeButton.remove()
 
-    if @opts.buttons is null
+    if @opts.buttons is null or @opts.buttons is false
       @buttonWrap.remove()
     else
       for button in @opts.buttons
