@@ -128,6 +128,7 @@ class Dialog extends SimpleModule
 
 
   remove: () =>
+    @trigger 'destroy.simple-dialog'
     @_unbind()
     @modal.remove() if @modal
     @el.remove()

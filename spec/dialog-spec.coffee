@@ -125,6 +125,17 @@ describe "dialog", ->
     # expect(button.is(':focus')).toBe(true)
     expect(button[0] == document.activeElement).toBe(true)
 
+  it "should trigger event when dialog remove", ->
+    dialog = simple.dialog
+      content: "hello"
+
+    eventTriggered = false
+    dialog.on 'destroy.simple-dialog', ->
+      eventTriggered = true
+
+    dialog.remove()
+    expect(eventTriggered).toBe(true)
+
 
 describe "message", ->
   it "should see only one button called 知道了", ->
