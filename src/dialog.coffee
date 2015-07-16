@@ -22,13 +22,15 @@ class Dialog extends SimpleModule
     focusButton: ".btn:first"
 
   @_mobile: do ->
-    return true if /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/.test navigator.userAgent
-    return false
+    ua = navigator.userAgent
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/.test ua
 
   @_tpl:
     dialog: """
       <div class="simple-dialog">
-        <a class="simple-dialog-remove" href="javascript:;"><i class="icon-cross"><span>&#10005;</span></i></a>
+        <a class="simple-dialog-remove" href="javascript:;">
+          <i class="icon-cross"><span>&#10005;</span></i>
+        </a>
         <div class="simple-dialog-wrapper">
           <div class="simple-dialog-content"></div>
           <div class="simple-dialog-buttons"></div>
@@ -47,7 +49,7 @@ class Dialog extends SimpleModule
 
   _init: () ->
     if @opts.content is null
-      throw "[Dialog] - content shouldn't be empty"
+      throw new Error "[Dialog] - content shouldn't be empty"
 
     Dialog.removeAll()
     @_render()
@@ -78,7 +80,7 @@ class Dialog extends SimpleModule
     unless @opts.showRemoveButton
       @removeButton.remove()
 
-    if @opts.buttons is null or @opts.buttons is false
+    unless @opts.buttons
       @buttonWrap.remove()
     else
       for button in @opts.buttons
