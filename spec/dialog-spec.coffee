@@ -125,16 +125,29 @@ describe "dialog", ->
     # expect(button.is(':focus')).toBe(true)
     expect(button[0] == document.activeElement).toBe(true)
 
-  it "should trigger event when dialog remove", ->
+  it "should trigger destroy event when dialog remove", ->
     dialog = simple.dialog
       content: "hello"
 
     eventTriggered = false
-    dialog.on 'destroy.simple-dialog', ->
+    dialog.on 'destroy', ->
       eventTriggered = true
 
     dialog.remove()
     expect(eventTriggered).toBe(true)
+
+  it "should off destroy event after dialog remove", ->
+    dialog = simple.dialog
+      content: "hello"
+
+    eventTriggeredCount = 0
+    dialog.on 'destroy', ->
+      eventTriggeredCount += 1
+
+    dialog.remove()
+    dialog.trigger 'destroy'
+
+    expect(eventTriggeredCount).toBe(1)
 
 
 describe "message", ->

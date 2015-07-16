@@ -120,6 +120,7 @@ class Dialog extends SimpleModule
     @removeButton.off(".simple-dialog")
     @modal.off(".simple-dialog") if @modal and @opts.clickModalRemove
     $(document).off(".simple-dialog")
+    @off 'destroy'
 
 
   setContent: (content) ->
@@ -128,7 +129,7 @@ class Dialog extends SimpleModule
 
 
   remove: () =>
-    @trigger 'destroy.simple-dialog'
+    @trigger 'destroy'
     @_unbind()
     @modal.remove() if @modal
     @el.remove()

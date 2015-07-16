@@ -96,11 +96,11 @@ __setDefaultButton()__ Object
 
 #### 事件
 
-__destroy.simple-dialog__
+__destroy__
 
 销毁 dialog 实例时触发
 
 ```coffeescript
-dialog.on 'destroy.simple-dialog', ->
+dialog.on 'destroy', ->
   # clean
 ```
