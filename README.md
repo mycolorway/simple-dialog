@@ -1,4 +1,4 @@
-# Simple Dialog 
+# Simple Dialog
 [![Circle CI](https://circleci.com/gh/mycolorway/simple-dialog.png?style=badge)](https://circleci.com/gh/mycolorway/simple-dialog)
 
 一个简单的组件，用于渲染一个对话框组件。
@@ -93,3 +93,14 @@ __removeAll()__
 __setDefaultButton()__ Object
 
 设置默认的按钮参数，按钮对象如上定制
+
+#### 事件
+
+__destroy__
+
+销毁 dialog 实例时触发
+
+```coffeescript
+dialog.on 'destroy', ->
+  # clean
+```

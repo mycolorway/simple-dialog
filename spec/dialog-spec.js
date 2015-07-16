@@ -115,13 +115,38 @@ describe("dialog", function() {
     expect(oTop).not.toEqual(nTop);
     return expect(oHeight).not.toEqual(nHeight);
   });
-  return it("should focus first button default", function() {
+  it("should focus first button default", function() {
     var button, dialog;
     dialog = simple.dialog({
       content: "hello"
     });
     button = dialog.buttonWrap.find('.btn:first');
     return expect(button[0] === document.activeElement).toBe(true);
+  });
+  it("should trigger destroy event when dialog remove", function() {
+    var dialog, eventTriggered;
+    dialog = simple.dialog({
+      content: "hello"
+    });
+    eventTriggered = false;
+    dialog.on('destroy', function() {
+      return eventTriggered = true;
+    });
+    dialog.remove();
+    return expect(eventTriggered).toBe(true);
+  });
+  return it("should off destroy event after dialog remove", function() {
+    var dialog, eventTriggeredCount;
+    dialog = simple.dialog({
+      content: "hello"
+    });
+    eventTriggeredCount = 0;
+    dialog.on('destroy', function() {
+      return eventTriggeredCount += 1;
+    });
+    dialog.remove();
+    dialog.trigger('destroy');
+    return expect(eventTriggeredCount).toBe(1);
   });
 });
 
