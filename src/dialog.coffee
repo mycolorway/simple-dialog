@@ -17,6 +17,7 @@ class Dialog extends SimpleModule
     modal: false
     clickModalRemove: true
     cls: ""
+    defaultCls: ""
     showRemoveButton: true
     buttons: ['close']
     focusButton: ".btn:first"
@@ -61,7 +62,7 @@ class Dialog extends SimpleModule
       @buttonWrap.find(@opts.focusButton).focus()
 
   _render: () ->
-    @el = $(Dialog._tpl.dialog).addClass @opts.cls
+    @el = $(Dialog._tpl.dialog).addClass [@opts.cls, @opts.defaultCls].join(' ')
     @wrapper = @el.find(".simple-dialog-wrapper")
     @removeButton = @el.find(".simple-dialog-remove")
     @contentWrap = @el.find(".simple-dialog-content")
@@ -162,6 +163,7 @@ dialog = (opts) ->
 
 dialog.message = (opts) ->
   opts = $.extend({width: 450}, opts, {
+    defaultCls: 'simple-dialog-message'
     buttons: [{
       text: Dialog._t 'known'
       callback: (e) ->
@@ -176,6 +178,7 @@ dialog.confirm = (opts) ->
   opts = $.extend({
     callback: $.noop
     width: 450
+    defaultCls: 'simple-dialog-confirm'
     buttons: [{
       text: Dialog._t 'ok'
       callback: (e) ->
