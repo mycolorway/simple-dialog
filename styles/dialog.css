@@ -4,11 +4,14 @@
   left: 50%;
   width: 400px;
   min-height: 1em;
-  z-index: 99999;
+  z-index: 100;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+.simple-dialog.simple-dialog-message, .simple-dialog.simple-dialog-confirm {
+  z-index: 400;
 }
 .simple-dialog .simple-dialog-wrapper {
   padding: 20px;
@@ -64,7 +67,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 99998;
+  z-index: 99;
   background-color: #000;
   opacity: 0.36;
   cursor: pointer;
