@@ -32,13 +32,13 @@ class Dialog extends SimpleModule
   @_tpl:
     dialog: """
       <div class="simple-dialog">
-        <a class="simple-dialog-remove" href="javascript:;">
-          <i class="icon-cross"><span>&#10005;</span></i>
-        </a>
         <div class="simple-dialog-wrapper">
           <div class="simple-dialog-content"></div>
           <div class="simple-dialog-buttons"></div>
         </div>
+        <a class="simple-dialog-remove" href="javascript:;">
+          <i class="icon-cross"><span>&#10005;</span></i>
+        </a>
       <div>
     """
 
@@ -156,6 +156,7 @@ class Dialog extends SimpleModule
       left: contentPosition.left
 
     @contentEl.css 'overflow-y': 'auto'
+      .css 'position', 'relative'
 
     scrollHeight = @contentEl[0].scrollHeight
     innerHeight =  @contentEl.innerHeight()
