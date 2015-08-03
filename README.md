@@ -84,6 +84,15 @@ Obejct/Array，需要显示哪些按钮，按钮如下定制：
 }
 ```
 
+__contentSelector__
+
+String，默认值`.simple-dialog-content`。当dialog的内容过长，超出了窗口高度，`contentSelector`对应的元素会作为滚动容器被设置一个最大高度，并且初始化对应的滚动阴影。
+注意，`contentSelector`对应的元素不能有padding、margin和border样式。
+
+__titleSelector__
+
+String，默认值`h3:first`。指定dialog的title元素，用来计算滚动容器的最大高度（如果标题在滚动容器的外面）。
+
 #### 方法
 
 __removeAll()__

@@ -13,7 +13,6 @@ class Dialog extends SimpleModule
   opts:
     content: null
     width: 600
-    height: "auto"
     modal: false
     clickModalRemove: true
     cls: ""
@@ -21,6 +20,10 @@ class Dialog extends SimpleModule
     showRemoveButton: true
     buttons: ['close']
     focusButton: ".btn:first"
+    titleSelector: 'h3:first'
+    contentSelector: '.simple-dialog-content'
+
+  @_count: 0
 
   @_mobile: do ->
     ua = navigator.userAgent
@@ -48,9 +51,11 @@ class Dialog extends SimpleModule
     """
 
 
-  _init: () ->
+  _init: ->
     if @opts.content is null
       throw new Error "[Dialog] - content shouldn't be empty"
+
+    @id = ++ Dialog._count
 
     Dialog.removeAll()
     @_render()
@@ -61,7 +66,7 @@ class Dialog extends SimpleModule
     if @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
 
-  _render: () ->
+  _render: ->
     @el = $(Dialog._tpl.dialog).addClass [@opts.cls, @opts.defaultCls].join(' ')
     @wrapper = @el.find(".simple-dialog-wrapper")
     @removeButton = @el.find(".simple-dialog-remove")
@@ -72,10 +77,7 @@ class Dialog extends SimpleModule
 
     @el.css
       width: @opts.width
-      height: @opts.height
 
-    # TODO should encode content for xss
-    # or the all template should be handle with template engine
     @contentWrap.append(@opts.content)
 
     unless @opts.showRemoveButton
@@ -83,11 +85,13 @@ class Dialog extends SimpleModule
 
     unless @opts.buttons
       @buttonWrap.remove()
+      @buttonWrap = null
     else
       for button in @opts.buttons
         if button is "close"
           button =
-            callback: @remove
+            callback: =>
+              @remove()
 
         button = $.extend({}, Dialog.defaultButton, button)
 
@@ -105,7 +109,7 @@ class Dialog extends SimpleModule
       @modal.css("cursor", "default") unless @opts.clickModalRemove
 
 
-  _bind: () ->
+  _bind: ->
     @removeButton.on "click.simple-dialog", (e) =>
       e.preventDefault()
       @remove()
@@ -114,40 +118,104 @@ class Dialog extends SimpleModule
       @modal.on "click.simple-dialog", (e) =>
         @remove()
 
-    $(document).on "keydown.simple-dialog", (e) =>
+    $(document).on "keydown.simple-dialog-#{@id}", (e) =>
       if e.which is 27
         @remove()
 
+    $(window).on "resize.simple-dialog-#{@id}", (e) =>
+      @maxContentHeight = null
+      @refresh()
 
-  _unbind: () ->
+
+  _unbind: ->
     @removeButton.off(".simple-dialog")
     @modal.off(".simple-dialog") if @modal and @opts.clickModalRemove
-    $(document).off(".simple-dialog")
-    @off 'destroy'
+    $(document).off(".simple-dialog-#{@id}")
+    $(window).off(".simple-dialog-#{@id}")
 
+
+  _initContentScroll: ->
+    @_topShadow ||= do =>
+      $('<div class="content-top-shadow" />')
+        .appendTo @wrapper
+
+    @_bottomShadow ||= do =>
+      $('<div class="content-bottom-shadow" />')
+        .appendTo @wrapper
+
+    contentPosition = @contentEl.position()
+    contentW = @contentEl.width()
+    shadowH = @_bottomShadow.height()
+    @_topShadow.css
+      width: contentW
+      top: contentPosition.top
+      left: contentPosition.left
+    @_bottomShadow.css
+      width: contentW
+      top: contentPosition.top + @contentEl.innerHeight() - shadowH
+      left: contentPosition.left
+
+    @contentEl.css 'overflow-y': 'auto'
+
+    scrollHeight = @contentEl[0].scrollHeight
+    innerHeight =  @contentEl.innerHeight()
+    @contentEl.off 'scroll.simple-dialog'
+      .on 'scroll.simple-dialog', (e) =>
+        scrollTop = @contentEl.scrollTop()
+        topScrolling = scrollTop > 0
+        bottomScrolling = scrollHeight - scrollTop - innerHeight > 1
+        @wrapper.toggleClass 'top-scrolling', topScrolling
+          .toggleClass 'bottom-scrolling', bottomScrolling
+      .trigger 'scroll'
 
   setContent: (content) ->
     @contentWrap.html(content)
+
+    @contentEl = null
+    @titleEl = null
+    @maxContentHeight = null
+    @_topShadow = null
+    @_bottomShadow = null
+
     @refresh()
 
 
-  remove: () =>
+  remove: ->
     @trigger 'destroy'
     @_unbind()
     @modal.remove() if @modal
     @el.remove()
+    $('body').removeClass('simple-dialog-scrollable')
 
 
-  refresh: () ->
-    @contentWrap.height("auto")
-    @contentWrap.height(@wrapper.height() - @buttonWrap.outerHeight(true))
+  refresh: ->
+    @contentEl ||= @el.find("#{@opts.contentSelector}")
+    @titleEl ||= @el.find("#{@opts.titleSelector}")
+    @maxContentHeight ||= do =>
+      winH = $(window).height()
+      dialogMargin = 30 * 2
+      dialogPadding = @wrapper.outerHeight() - @wrapper.height()
+      titleH = @titleEl.outerHeight(true)
+      buttonH = @buttonWrap?.outerHeight(true)
+      winH - dialogMargin - dialogPadding - titleH - buttonH
+
+    contentH = @contentEl[0].scrollHeight
+
+    if contentH > @maxContentHeight
+      @contentEl.height @maxContentHeight
+      $('body').addClass('simple-dialog-scrollable')
+      @_initContentScroll()
+    else
+      @contentEl.height contentH
+      $('body').removeClass('simple-dialog-scrollable')
+      @wrapper.removeClass('top-scrolling bottom-scrolling')
 
     @el.css
       marginLeft: - @el.outerWidth() / 2
       marginTop: - @el.outerHeight() / 2
 
 
-  @removeAll: () ->
+  @removeAll: ->
     $(".simple-dialog").each () ->
       dialog = $(@).data("dialog")
       dialog.remove()
@@ -160,6 +228,8 @@ class Dialog extends SimpleModule
 
 dialog = (opts) ->
   return new Dialog opts
+
+dialog.class = Dialog
 
 dialog.message = (opts) ->
   opts = $.extend({width: 450}, opts, {

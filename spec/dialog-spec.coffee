@@ -93,7 +93,7 @@ describe "dialog", ->
     dialog = simple.dialog
       content: "hello"
 
-    esc = $.Event "keydown.simple-dialog", which: 27
+    esc = $.Event "keydown", which: 27
     $(document).trigger(esc)
     expect($(".simple-dialog").length).toBe(0)
 
@@ -136,19 +136,12 @@ describe "dialog", ->
     dialog.remove()
     expect(eventTriggered).toBe(true)
 
-  it "should off destroy event after dialog remove", ->
+  it 'should show scroll shadow if content is too long', ->
+    winH = $(window).height()
     dialog = simple.dialog
-      content: "hello"
+      content: "<div style=\"height: #{winH + 200}px;\">long content</div>"
 
-    eventTriggeredCount = 0
-    dialog.on 'destroy', ->
-      eventTriggeredCount += 1
-
-    dialog.remove()
-    dialog.trigger 'destroy'
-
-    expect(eventTriggeredCount).toBe(1)
-
+    expect(dialog.wrapper.hasClass('bottom-scrolling')).toBe(true)
 
 describe "message", ->
   it "should see only one button called 知道了", ->
