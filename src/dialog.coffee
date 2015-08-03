@@ -197,9 +197,9 @@ class Dialog extends SimpleModule
       dialogMargin = 30 * 2
       dialogPadding = @wrapper.outerHeight() - @wrapper.height()
       titleH = if $.contains(@contentEl[0], @titleEl[0])
-        @titleEl.outerHeight(true)
-      else
         0
+      else
+        @titleEl.outerHeight(true)
       buttonH = @buttonWrap?.outerHeight(true) || 0
       winH - dialogMargin - dialogPadding - titleH - buttonH
 
