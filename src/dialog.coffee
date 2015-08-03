@@ -22,6 +22,7 @@ class Dialog extends SimpleModule
     focusButton: ".btn:first"
     titleSelector: 'h3:first'
     contentSelector: '.simple-dialog-content'
+    buttonSelector: '.simple-dialog-buttons'
 
   @_count: 0
 
@@ -174,6 +175,7 @@ class Dialog extends SimpleModule
 
     @contentEl = null
     @titleEl = null
+    @buttonEl = null
     @maxContentHeight = null
     @_topShadow = null
     @_bottomShadow = null
@@ -192,6 +194,7 @@ class Dialog extends SimpleModule
   refresh: ->
     @contentEl ||= @el.find("#{@opts.contentSelector}")
     @titleEl ||= @el.find("#{@opts.titleSelector}")
+    @buttonEl ||= @el.find("#{@opts.buttonSelector}")
     @maxContentHeight ||= do =>
       winH = $(window).height()
       dialogMargin = 30 * 2
@@ -200,7 +203,10 @@ class Dialog extends SimpleModule
         0
       else
         @titleEl.outerHeight(true)
-      buttonH = @buttonWrap?.outerHeight(true) || 0
+      buttonH = if @buttonEl and $.contains(@contentEl[0], @buttonEl[0])
+        0
+      else
+        @buttonEl?.outerHeight(true) || 0
       winH - dialogMargin - dialogPadding - titleH - buttonH
 
     contentH = @contentEl[0].scrollHeight
