@@ -95,7 +95,7 @@ describe("dialog", function() {
     dialog = simple.dialog({
       content: "hello"
     });
-    esc = $.Event("keydown.simple-dialog", {
+    esc = $.Event("keydown", {
       which: 27
     });
     $(document).trigger(esc);
@@ -135,18 +135,13 @@ describe("dialog", function() {
     dialog.remove();
     return expect(eventTriggered).toBe(true);
   });
-  return it("should off destroy event after dialog remove", function() {
-    var dialog, eventTriggeredCount;
+  return it('should show scroll shadow if content is too long', function() {
+    var dialog, winH;
+    winH = $(window).height();
     dialog = simple.dialog({
-      content: "hello"
+      content: "<div style=\"height: " + (winH + 200) + "px;\">long content</div>"
     });
-    eventTriggeredCount = 0;
-    dialog.on('destroy', function() {
-      return eventTriggeredCount += 1;
-    });
-    dialog.remove();
-    dialog.trigger('destroy');
-    return expect(eventTriggeredCount).toBe(1);
+    return expect(dialog.wrapper.hasClass('bottom-scrolling')).toBe(true);
   });
 });
 

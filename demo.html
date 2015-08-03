@@ -15,6 +15,10 @@
 		.wrapper {
 			margin: 80px auto;
 		}
+
+		.long-content {
+			height: 600px;
+		}
 	</style>
 
 	<script type="text/javascript" src="vendor/bower/jquery/dist/jquery.min.js"></script>
@@ -24,7 +28,8 @@
 		$(function() {
 			$("#showDialog").on("click", function(e) {
 				simple.dialog({
-					content: "<h4 class=dialog-title>hello dialog</h4><p>this is a demo</p>",
+					content: '<h3 class="dialog-title">hello dialog</h3><div class="dialog-content"><p class="long-content">this is a demo</p></div>',
+					contentSelector: '.dialog-content',
 					modal: true
 				});
 			});
@@ -47,7 +52,7 @@
 
 </head>
 <body>
-  <div class="wrapper">
+  <div class="wrapper long-content">
     <button type="button" id="showDialog">show dialog</button>
     <button type="button" id="showMessage">show message</button>
     <button type="button" id="showConfirm">show confirm</button>
