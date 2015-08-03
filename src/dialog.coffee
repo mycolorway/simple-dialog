@@ -63,7 +63,7 @@ class Dialog extends SimpleModule
     @el.data("dialog", @)
     @refresh()
 
-    if @opts.focusButton
+    if @opts.buttons && @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
 
   _render: ->
