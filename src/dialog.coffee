@@ -16,7 +16,6 @@ class Dialog extends SimpleModule
     modal: false
     clickModalRemove: true
     cls: ""
-    defaultCls: ""
     showRemoveButton: true
     buttons: ['close']
     focusButton: ".btn:first"
@@ -40,7 +39,7 @@ class Dialog extends SimpleModule
         <a class="simple-dialog-remove" href="javascript:;">
           <i class="icon-cross"><span>&#10005;</span></i>
         </a>
-      <div>
+      </div>
     """
 
     modal: """
@@ -67,8 +66,8 @@ class Dialog extends SimpleModule
     if @opts.buttons && @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
 
-  _render: ->
-    @el = $(Dialog._tpl.dialog).addClass [@opts.cls, @opts.defaultCls].join(' ')
+  _render: () ->
+    @el = $(Dialog._tpl.dialog).addClass @opts.cls
     @wrapper = @el.find(".simple-dialog-wrapper")
     @removeButton = @el.find(".simple-dialog-remove")
     @contentWrap = @el.find(".simple-dialog-content")
@@ -243,7 +242,7 @@ dialog.class = Dialog
 
 dialog.message = (opts) ->
   opts = $.extend({width: 450}, opts, {
-    defaultCls: 'simple-dialog-message'
+    cls: opts.cls + ' simple-dialog-message'
     buttons: [{
       text: Dialog._t 'known'
       callback: (e) ->
@@ -258,7 +257,7 @@ dialog.confirm = (opts) ->
   opts = $.extend({
     callback: $.noop
     width: 450
-    defaultCls: 'simple-dialog-confirm'
+    cls: opts.cls + ' simple-dialog-confirm'
     buttons: [{
       text: Dialog._t 'ok'
       callback: (e) ->
