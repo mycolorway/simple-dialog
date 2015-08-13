@@ -14,6 +14,7 @@ class Dialog extends SimpleModule
     content: null
     width: 600
     modal: false
+    fullscreen: false
     clickModalRemove: true
     cls: ""
     showRemoveButton: true
@@ -73,7 +74,7 @@ class Dialog extends SimpleModule
     @contentWrap = @el.find(".simple-dialog-content")
     @buttonWrap = @el.find(".simple-dialog-buttons")
 
-    @el.toggleClass 'simple-dialog-mobile', Dialog._mobile
+    @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen
 
     @el.css
       width: @opts.width
