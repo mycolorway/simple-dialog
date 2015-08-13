@@ -56,6 +56,9 @@ __modal__
 
 Boolean，是否有遮罩层，默认为false
 
+__fullscreen__
+
+Boolean，是否全屏，有时手机上需要，默认为 false
 
 __clickModalRemove__
 
