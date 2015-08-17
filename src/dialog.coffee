@@ -197,8 +197,9 @@ class Dialog extends SimpleModule
     @buttonEl ||= @el.find("#{@opts.buttonSelector}")
     @maxContentHeight ||= do =>
       winH = $(window).height()
-      dialogMargin = 30 * 2
-      dialogPadding = @wrapper.outerHeight() - @wrapper.height()
+      dialogMargin = if @opts.fullscreen then 0 else 30 * 2
+      dialogPadding = @el.outerHeight() - @el.height()
+      wrapperPadding = @wrapper.outerHeight() - @wrapper.height()
       titleH = if $.contains(@contentEl[0], @titleEl[0])
         0
       else
@@ -207,7 +208,7 @@ class Dialog extends SimpleModule
         0
       else
         @buttonEl?.outerHeight(true) || 0
-      winH - dialogMargin - dialogPadding - titleH - buttonH
+      winH - dialogMargin - dialogPadding - wrapperPadding - titleH - buttonH
 
     contentH = @contentEl[0].scrollHeight
 
