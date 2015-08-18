@@ -20,7 +20,6 @@ body.simple-dialog-scrollable {
 .simple-dialog .simple-dialog-wrapper {
   padding: 20px;
   position: relative;
-  overflow: hidden;
 }
 .simple-dialog .simple-dialog-wrapper .content-top-shadow,
 .simple-dialog .simple-dialog-wrapper .content-bottom-shadow {
