@@ -210,6 +210,7 @@ class Dialog extends SimpleModule
         @buttonEl?.outerHeight(true) || 0
       winH - dialogMargin - dialogPadding - wrapperPadding - titleH - buttonH
 
+    @contentEl.css 'height', ''
     contentH = @contentEl[0].scrollHeight
 
     if contentH > @maxContentHeight
