@@ -12,7 +12,7 @@ class Dialog extends SimpleModule
       known: 'ok'
   opts:
     content: null
-    width: 600
+    width: 450
     modal: false
     fullscreen: false
     clickModalRemove: true
@@ -245,7 +245,6 @@ dialog.class = Dialog
 
 dialog.message = (opts) ->
   opts = $.extend({
-    width: 450
     cls: "simple-dialog-message"
     buttons: [{
       text: Dialog._t 'known'
@@ -254,7 +253,7 @@ dialog.message = (opts) ->
           .data("dialog").remove()
     }]
   }, opts, {
-    cls: "simple-dialog-message" + (opts.cls ? " #{opts.cls}" : '')
+    cls: "simple-dialog-message" + (if opts.cls then " #{opts.cls}" else '')
   })
 
   return new Dialog opts
@@ -262,7 +261,6 @@ dialog.message = (opts) ->
 dialog.confirm = (opts) ->
   opts = $.extend({
     callback: $.noop
-    width: 450
     cls: "simple-dialog-confirm"
     buttons: [{
       text: Dialog._t 'ok'
@@ -279,7 +277,7 @@ dialog.confirm = (opts) ->
         dialog.remove()
     }]
   }, opts, {
-    cls: "simple-dialog-confirm" + (opts.cls ? " #{opts.cls}" : '')
+    cls: "simple-dialog-confirm" + (if opts.cls then " #{opts.cls}" else '')
   })
 
   return new Dialog opts
