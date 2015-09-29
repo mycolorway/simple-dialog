@@ -244,14 +244,17 @@ dialog = (opts) ->
 dialog.class = Dialog
 
 dialog.message = (opts) ->
-  opts = $.extend({width: 450}, opts, {
-    cls: opts.cls + ' simple-dialog-message'
+  opts = $.extend({
+    width: 450
+    cls: "simple-dialog-message"
     buttons: [{
       text: Dialog._t 'known'
       callback: (e) ->
         $(e.target).closest(".simple-dialog")
           .data("dialog").remove()
     }]
+  }, opts, {
+    cls: "simple-dialog-message" + (opts.cls ? " #{opts.cls}" : '')
   })
 
   return new Dialog opts
@@ -260,7 +263,7 @@ dialog.confirm = (opts) ->
   opts = $.extend({
     callback: $.noop
     width: 450
-    cls: opts.cls + ' simple-dialog-confirm'
+    cls: "simple-dialog-confirm"
     buttons: [{
       text: Dialog._t 'ok'
       callback: (e) ->
@@ -275,7 +278,10 @@ dialog.confirm = (opts) ->
         dialog.opts.callback(e, false)
         dialog.remove()
     }]
-  }, opts)
+  }, opts, {
+    cls: "simple-dialog-confirm" + (opts.cls ? " #{opts.cls}" : '')
+  })
+
   return new Dialog opts
 
 dialog.removeAll = Dialog.removeAll

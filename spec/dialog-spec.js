@@ -149,14 +149,7 @@ describe("message", function() {
   return it("should see only one button called 知道了", function() {
     var button, message;
     message = simple.dialog.message({
-      content: "hello",
-      buttons: [
-        {
-          text: "yes"
-        }, {
-          text: "no"
-        }
-      ]
+      content: "hello"
     });
     button = message.el.find("button");
     expect(button.length).toBe(1);

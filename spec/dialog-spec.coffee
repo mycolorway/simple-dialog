@@ -147,11 +147,6 @@ describe "message", ->
   it "should see only one button called 知道了", ->
     message = simple.dialog.message
       content: "hello"
-      buttons: [{
-        text: "yes"
-      }, {
-        text: "no"
-      }]
 
     button = message.el.find("button")
     expect(button.length).toBe(1)
