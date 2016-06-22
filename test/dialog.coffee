@@ -5,7 +5,7 @@ describe "dialog", ->
     expect(true).to.equal(true)
     dialog = new SimpleDialog
       content: "hello world"
-    expect($(".simple-dialog").length).to.equal(0)
+    expect($(".simple-dialog").length).to.equal(1)
 
 
   xit "should see throw error if no content", ->
