@@ -1,16 +1,5 @@
 class Dialog extends SimpleModule
-  @i18n:
-    'zh-CN':
-      cancel: '取消'
-      close: '关闭'
-      ok: '确定'
-      known: '知道了'
-    'en':
-      cancel: 'cancel'
-      close: 'close'
-      ok: 'ok'
-      known: 'ok'
-  opts:
+  @opts:
     content: null
     width: 450
     modal: false
@@ -52,8 +41,9 @@ class Dialog extends SimpleModule
     """
 
 
-  constructor: ->
+  constructor: (opts)->
     super
+    @opts = $.extend {}, Dialog.opts, opts
     if @opts.content is null
       throw new Error "[Dialog] - content shouldn't be empty"
 
@@ -73,6 +63,7 @@ class Dialog extends SimpleModule
     @removeButton = @el.find(".simple-dialog-remove")
     @contentWrap = @el.find(".simple-dialog-content")
     @buttonWrap = @el.find(".simple-dialog-buttons")
+
 
     @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen
 
