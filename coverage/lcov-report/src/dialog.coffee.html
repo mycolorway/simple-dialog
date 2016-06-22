@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/dialog.coffee</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> dialog.coffee
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.52% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/155</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.41% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.47% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/128</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class Dialog extends SimpleModule
+  @i18n:
+    'zh-CN':
+      cancel: '取消'
+      close: '关闭'
+      ok: '确定'
+      known: '知道了'
+    'en':
+      cancel: 'cancel'
+      close: 'close'
+      ok: 'ok'
+      known: 'ok'
+  opts:
+    content: null
+    width: 450
+    modal: false
+    fullscreen: false
+    clickModalRemove: true
+    cls: ""
+    showRemoveButton: true
+    buttons: ['close']
+    focusButton: ".btn:first"
+    titleSelector: 'h3:first'
+    contentSelector: '.simple-dialog-content'
+    buttonSelector: '.simple-dialog-buttons'
+&nbsp;
+  @_count: 0
+&nbsp;
+  @_mobile: do -&gt;
+    ua = navigator.userAgent
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/.test ua
+&nbsp;
+  @_tpl:
+    dialog: """
+      &lt;div class="simple-dialog"&gt;
+        &lt;div class="simple-dialog-wrapper"&gt;
+          &lt;div class="simple-dialog-content"&gt;&lt;/div&gt;
+          &lt;div class="simple-dialog-buttons"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;a class="simple-dialog-remove" href="javascript:;"&gt;
+          &lt;i class="icon-cross"&gt;&lt;span&gt;&amp;#10005;&lt;/span&gt;&lt;/i&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    """
+&nbsp;
+    modal: """
+      &lt;div class="simple-dialog-modal"&gt;&lt;/div&gt;
+    """
+&nbsp;
+    button: """
+      &lt;button type="button"&gt;&lt;/button&gt;
+    """
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  _init: -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    if @opts.content is null</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error "[Dialog] - content shouldn't be empty"</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @id = ++ Dialog._count</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    Dialog.removeAll()</span>
+<span class="cstat-no" title="statement not covered" >    @_render()</span>
+<span class="cstat-no" title="statement not covered" >    @_bind()</span>
+<span class="cstat-no" title="statement not covered" >    @el.data("dialog", @)</span>
+<span class="cstat-no" title="statement not covered" >    @refresh()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if @opts.buttons &amp;&amp; @opts.focusButton</span>
+<span class="cstat-no" title="statement not covered" >      @buttonWrap.find(@opts.focusButton).focus()</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >  _render: ()</span> -&gt;
+<span class="cstat-no" title="statement not covered" >    @el = $(Dialog._tpl.dialog).addClass @opts.cls</span>
+<span class="cstat-no" title="statement not covered" >    @wrapper = @el.find(".simple-dialog-wrapper")</span>
+<span class="cstat-no" title="statement not covered" >    @removeButton = @el.find(".simple-dialog-remove")</span>
+<span class="cstat-no" title="statement not covered" >    @contentWrap = @el.find(".simple-dialog-content")</span>
+<span class="cstat-no" title="statement not covered" >    @buttonWrap = @el.find(".simple-dialog-buttons")</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @el.css</span>
+      width: @opts.width
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @contentWrap.append(@opts.content)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    unless @opts.showRemoveButton</span>
+<span class="cstat-no" title="statement not covered" >      @removeButton.remove()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    unless @opts.buttons</span>
+<span class="cstat-no" title="statement not covered" >      @buttonWrap.remove()</span>
+<span class="cstat-no" title="statement not covered" >      @buttonWrap = null</span>
+    else
+<span class="cstat-no" title="statement not covered" >      for button in @opts.buttons</span>
+<span class="cstat-no" title="statement not covered" >        if button is "close"</span>
+<span class="cstat-no" title="statement not covered" >          button =</span>
+<span class="fstat-no" title="function not covered" >            callback: =&gt;</span>
+<span class="cstat-no" title="statement not covered" >              @remove()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        button = $.extend({}, Dialog.defaultButton, button)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $(Dialog._tpl.button)</span>
+          .addClass 'btn'
+          .addClass button.cls
+          .html button.text
+          .on "click", button.callback
+          .appendTo @buttonWrap
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @el.appendTo("body")</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if @opts.modal</span>
+<span class="cstat-no" title="statement not covered" >      @modal = $(Dialog._tpl.modal).appendTo("body")</span>
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >      @modal.css("cursor", "default")</span> unless @opts.clickModalRemove</span>
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  _bind: -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    @removeButton.on "click.simple-dialog", <span class="fstat-no" title="function not covered" >(e) =&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >      e.preventDefault()</span>
+<span class="cstat-no" title="statement not covered" >      @remove()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if @modal and @opts.clickModalRemove</span>
+<span class="cstat-no" title="statement not covered" >      @modal.on "click.simple-dialog", <span class="fstat-no" title="function not covered" >(e) =&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >        @remove()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(document).on <span class="cstat-no" title="statement not covered" >"keydown.simple-dialog-#{<span class="cstat-no" title="statement not covered" >@id</span>}</span>", <span class="fstat-no" title="function not covered" >(e) =&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >      if e.which is 27</span>
+<span class="cstat-no" title="statement not covered" >        @remove()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(window).on <span class="cstat-no" title="statement not covered" >"resize.simple-dialog-#{<span class="cstat-no" title="statement not covered" >@id</span>}</span>", <span class="fstat-no" title="function not covered" >(e) =&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >      @maxContentHeight = null</span>
+<span class="cstat-no" title="statement not covered" >      @refresh()</span>
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  _unbind: -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    @removeButton.off(".simple-dialog")</span>
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    @modal.off(".simple-dialog")</span> if @modal and @opts.clickModalRemove</span>
+<span class="cstat-no" title="statement not covered" >    $(document).off(<span class="cstat-no" title="statement not covered" >".simple-dialog-#{<span class="cstat-no" title="statement not covered" >@id</span>}</span>")</span>
+<span class="cstat-no" title="statement not covered" >    $(window).off(<span class="cstat-no" title="statement not covered" >".simple-dialog-#{<span class="cstat-no" title="statement not covered" >@id</span>}</span>")</span>
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  _initContentScroll: -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    @_topShadow ||= do <span class="fstat-no" title="function not covered" >=&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >      $('&lt;div class="content-top-shadow" /&gt;')</span>
+        .appendTo @wrapper
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @_bottomShadow ||= do <span class="fstat-no" title="function not covered" >=&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >      $('&lt;div class="content-bottom-shadow" /&gt;')</span>
+        .appendTo @wrapper
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    contentPosition = @contentEl.position()</span>
+<span class="cstat-no" title="statement not covered" >    contentW = @contentEl.width()</span>
+<span class="cstat-no" title="statement not covered" >    shadowH = @_bottomShadow.height()</span>
+<span class="cstat-no" title="statement not covered" >    @_topShadow.css</span>
+      width: contentW
+      top: contentPosition.top
+      left: contentPosition.left
+<span class="cstat-no" title="statement not covered" >    @_bottomShadow.css</span>
+      width: contentW
+      top: contentPosition.top + @contentEl.innerHeight() - shadowH
+      left: contentPosition.left
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @contentEl.css 'overflow-y': 'auto'</span>
+      .css 'position', 'relative'
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    scrollHeight = @contentEl[0].scrollHeight</span>
+<span class="cstat-no" title="statement not covered" >    innerHeight =  @contentEl.innerHeight()</span>
+<span class="cstat-no" title="statement not covered" >    @contentEl.off 'scroll.simple-dialog'</span>
+      .on 'scroll.simple-dialog', <span class="fstat-no" title="function not covered" >(e) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >        scrollTop = @contentEl.scrollTop()</span>
+<span class="cstat-no" title="statement not covered" >        topScrolling = scrollTop &gt; 0</span>
+<span class="cstat-no" title="statement not covered" >        bottomScrolling = scrollHeight - scrollTop - innerHeight &gt; 1</span>
+<span class="cstat-no" title="statement not covered" >        @wrapper.toggleClass 'top-scrolling', topScrolling</span>
+          .toggleClass 'bottom-scrolling', bottomScrolling
+      .trigger 'scroll'
+&nbsp;
+<span class="fstat-no" title="function not covered" >  setContent: (content) -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    @contentWrap.html(content)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @contentEl = null</span>
+<span class="cstat-no" title="statement not covered" >    @titleEl = null</span>
+<span class="cstat-no" title="statement not covered" >    @buttonEl = null</span>
+<span class="cstat-no" title="statement not covered" >    @maxContentHeight = null</span>
+<span class="cstat-no" title="statement not covered" >    @_topShadow = null</span>
+<span class="cstat-no" title="statement not covered" >    @_bottomShadow = null</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @refresh()</span>
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  remove: -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    @trigger 'destroy'</span>
+<span class="cstat-no" title="statement not covered" >    @_unbind()</span>
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    @modal.remove()</span> if @modal</span>
+<span class="cstat-no" title="statement not covered" >    @el.remove()</span>
+<span class="cstat-no" title="statement not covered" >    $('body').removeClass('simple-dialog-scrollable')</span>
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  refresh: -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    @contentEl ||= @el.find(<span class="cstat-no" title="statement not covered" >"#{<span class="cstat-no" title="statement not covered" >@opts</span>.contentSelector}</span>")</span>
+<span class="cstat-no" title="statement not covered" >    @titleEl ||= @el.find(<span class="cstat-no" title="statement not covered" >"#{<span class="cstat-no" title="statement not covered" >@opts</span>.titleSelector}</span>")</span>
+<span class="cstat-no" title="statement not covered" >    @buttonEl ||= @el.find(<span class="cstat-no" title="statement not covered" >"#{<span class="cstat-no" title="statement not covered" >@opts</span>.buttonSelector}</span>")</span>
+<span class="cstat-no" title="statement not covered" >    @maxContentHeight ||= do <span class="fstat-no" title="function not covered" >=&gt;</span></span>
+<span class="cstat-no" title="statement not covered" >      winH = $(window).height()</span>
+<span class="cstat-no" title="statement not covered" >      dialogMargin = if @opts.fullscreen then <span class="cstat-no" title="statement not covered" >0</span> else <span class="cstat-no" title="statement not covered" >30 * 2</span></span>
+<span class="cstat-no" title="statement not covered" >      dialogPadding = @el.outerHeight() - @el.height()</span>
+<span class="cstat-no" title="statement not covered" >      wrapperPadding = @wrapper.outerHeight() - @wrapper.height()</span>
+<span class="cstat-no" title="statement not covered" >      titleH = if $.contains(@contentEl[0], @titleEl[0])</span>
+<span class="cstat-no" title="statement not covered" >        0</span>
+      else
+<span class="cstat-no" title="statement not covered" >        @titleEl.outerHeight(true)</span>
+<span class="cstat-no" title="statement not covered" >      buttonH = if @buttonEl and $.contains(@contentEl[0], @buttonEl[0])</span>
+<span class="cstat-no" title="statement not covered" >        0</span>
+      else
+<span class="cstat-no" title="statement not covered" >        @buttonEl?.outerHeight(true) || 0</span>
+<span class="cstat-no" title="statement not covered" >      winH - dialogMargin - dialogPadding - wrapperPadding - titleH - buttonH</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @contentEl.css 'height', ''</span>
+<span class="cstat-no" title="statement not covered" >    contentH = @contentEl[0].scrollHeight</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if contentH &gt; @maxContentHeight</span>
+<span class="cstat-no" title="statement not covered" >      @contentEl.height @maxContentHeight</span>
+<span class="cstat-no" title="statement not covered" >      $('body').addClass('simple-dialog-scrollable')</span>
+<span class="cstat-no" title="statement not covered" >      @_initContentScroll()</span>
+    else
+<span class="cstat-no" title="statement not covered" >      @contentEl.height contentH</span>
+<span class="cstat-no" title="statement not covered" >      $('body').removeClass('simple-dialog-scrollable')</span>
+<span class="cstat-no" title="statement not covered" >      @wrapper.removeClass('top-scrolling bottom-scrolling')</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    @el.css</span>
+      marginLeft: - @el.outerWidth() / 2
+      marginTop: - @el.outerHeight() / 2
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  @removeAll: -&gt;</span>
+<span class="cstat-no" title="statement not covered" >    $(".simple-dialog").each <span class="fstat-no" title="function not covered" >()</span> -&gt;</span>
+<span class="cstat-no" title="statement not covered" >      dialog = $(@).data("dialog")</span>
+<span class="cstat-no" title="statement not covered" >      dialog.remove()</span>
+&nbsp;
+&nbsp;
+  @defaultButton:
+    text: 'close'
+    callback: $.noop
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >Dialog.message = (opts) -&gt;</span>
+<span class="cstat-no" title="statement not covered" >  opts = $.extend({</span>
+    cls: "simple-dialog-message"
+    buttons: [{
+      text: 'known'
+<span class="fstat-no" title="function not covered" >      callback: (e) -&gt;</span>
+<span class="cstat-no" title="statement not covered" >        $(e.target).closest(".simple-dialog")</span>
+          .data("dialog").remove()
+    }]
+  }, opts, {
+    cls: "simple-dialog-message" + (<span class="cstat-no" title="statement not covered" >if opts.cls then <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >" #{<span class="cstat-no" title="statement not covered" >opts</span>.cls}</span>"</span> else <span class="cstat-no" title="statement not covered" >''</span></span>)
+  })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return new Dialog opts</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >Dialog.confirm = (opts) -&gt;</span>
+<span class="cstat-no" title="statement not covered" >  opts = $.extend({</span>
+    callback: $.noop
+    cls: "simple-dialog-confirm"
+    buttons: [{
+      text: 'ok'
+<span class="fstat-no" title="function not covered" >      callback: (e) -&gt;</span>
+<span class="cstat-no" title="statement not covered" >        dialog = $(e.target).closest(".simple-dialog").data("dialog")</span>
+<span class="cstat-no" title="statement not covered" >        dialog.opts.callback(e, true)</span>
+<span class="cstat-no" title="statement not covered" >        dialog.remove()</span>
+    }, {
+      text: 'cancel'
+      cls: "btn-link"
+<span class="fstat-no" title="function not covered" >      callback: (e) -&gt;</span>
+<span class="cstat-no" title="statement not covered" >        dialog = $(e.target).closest(".simple-dialog").data("dialog")</span>
+<span class="cstat-no" title="statement not covered" >        dialog.opts.callback(e, false)</span>
+<span class="cstat-no" title="statement not covered" >        dialog.remove()</span>
+    }]
+  }, opts, {
+    cls: "simple-dialog-confirm" + (<span class="cstat-no" title="statement not covered" >if opts.cls then <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >" #{<span class="cstat-no" title="statement not covered" >opts</span>.cls}</span>"</span> else <span class="cstat-no" title="statement not covered" >''</span></span>)
+  })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return new Dialog opts</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >Dialog.setDefaultButton = (opts) -&gt;</span>
+<span class="cstat-no" title="statement not covered" >  Dialog.defaultButton = opts</span>
+&nbsp;
+module.exports = Dialog
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 22 2016 13:54:18 GMT+0800 (CST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

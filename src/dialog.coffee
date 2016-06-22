@@ -52,7 +52,8 @@ class Dialog extends SimpleModule
     """
 
 
-  _init: ->
+  constructor: ->
+    super
     if @opts.content is null
       throw new Error "[Dialog] - content shouldn't be empty"
 
@@ -62,7 +63,6 @@ class Dialog extends SimpleModule
     @_render()
     @_bind()
     @el.data("dialog", @)
-    @refresh()
 
     if @opts.buttons && @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
@@ -125,7 +125,6 @@ class Dialog extends SimpleModule
 
     $(window).on "resize.simple-dialog-#{@id}", (e) =>
       @maxContentHeight = null
-      @refresh()
 
 
   _unbind: ->
@@ -180,7 +179,6 @@ class Dialog extends SimpleModule
     @_topShadow = null
     @_bottomShadow = null
 
-    @refresh()
 
 
   remove: ->
@@ -191,41 +189,6 @@ class Dialog extends SimpleModule
     $('body').removeClass('simple-dialog-scrollable')
 
 
-  refresh: ->
-    @contentEl ||= @el.find("#{@opts.contentSelector}")
-    @titleEl ||= @el.find("#{@opts.titleSelector}")
-    @buttonEl ||= @el.find("#{@opts.buttonSelector}")
-    @maxContentHeight ||= do =>
-      winH = $(window).height()
-      dialogMargin = if @opts.fullscreen then 0 else 30 * 2
-      dialogPadding = @el.outerHeight() - @el.height()
-      wrapperPadding = @wrapper.outerHeight() - @wrapper.height()
-      titleH = if $.contains(@contentEl[0], @titleEl[0])
-        0
-      else
-        @titleEl.outerHeight(true)
-      buttonH = if @buttonEl and $.contains(@contentEl[0], @buttonEl[0])
-        0
-      else
-        @buttonEl?.outerHeight(true) || 0
-      winH - dialogMargin - dialogPadding - wrapperPadding - titleH - buttonH
-
-    @contentEl.css 'height', ''
-    contentH = @contentEl[0].scrollHeight
-
-    if contentH > @maxContentHeight
-      @contentEl.height @maxContentHeight
-      $('body').addClass('simple-dialog-scrollable')
-      @_initContentScroll()
-    else
-      @contentEl.height contentH
-      $('body').removeClass('simple-dialog-scrollable')
-      @wrapper.removeClass('top-scrolling bottom-scrolling')
-
-    @el.css
-      marginLeft: - @el.outerWidth() / 2
-      marginTop: - @el.outerHeight() / 2
-
 
   @removeAll: ->
     $(".simple-dialog").each () ->
@@ -234,20 +197,15 @@ class Dialog extends SimpleModule
 
 
   @defaultButton:
-    text: @::_t 'close'
+    text: 'close'
     callback: $.noop
 
 
-dialog = (opts) ->
-  return new Dialog opts
-
-dialog.class = Dialog
-
-dialog.message = (opts) ->
+Dialog.message = (opts) ->
   opts = $.extend({
     cls: "simple-dialog-message"
     buttons: [{
-      text: Dialog._t 'known'
+      text: 'known'
       callback: (e) ->
         $(e.target).closest(".simple-dialog")
           .data("dialog").remove()
@@ -258,18 +216,18 @@ dialog.message = (opts) ->
 
   return new Dialog opts
 
-dialog.confirm = (opts) ->
+Dialog.confirm = (opts) ->
   opts = $.extend({
     callback: $.noop
     cls: "simple-dialog-confirm"
     buttons: [{
-      text: Dialog._t 'ok'
+      text: 'ok'
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data("dialog")
         dialog.opts.callback(e, true)
         dialog.remove()
     }, {
-      text: Dialog._t 'cancel'
+      text: 'cancel'
       cls: "btn-link"
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data("dialog")
@@ -282,6 +240,7 @@ dialog.confirm = (opts) ->
 
   return new Dialog opts
 
-dialog.removeAll = Dialog.removeAll
-dialog.setDefaultButton = (opts) ->
+Dialog.setDefaultButton = (opts) ->
   Dialog.defaultButton = opts
+
+module.exports = Dialog
