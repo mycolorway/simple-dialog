@@ -75,6 +75,8 @@ class Dialog extends SimpleModule
     @buttonWrap = @el.find(".simple-dialog-buttons")
 
     @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen
+    if @opts.fullscreen
+      $('body').addClass 'simple-dialog-scrollable'
 
     @el.css
       width: @opts.width
@@ -192,6 +194,7 @@ class Dialog extends SimpleModule
 
 
   refresh: ->
+    return if @opts.fullscreen
     @contentEl ||= @el.find("#{@opts.contentSelector}")
     @titleEl ||= @el.find("#{@opts.titleSelector}")
     @buttonEl ||= @el.find("#{@opts.buttonSelector}")
