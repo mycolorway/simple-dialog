@@ -16,7 +16,7 @@
   }
 }(this, function ($,SimpleDialog) {
 var define, module, exports;
-var b = (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var b = require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"dialog":[function(require,module,exports){
 var Dialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -38,6 +38,8 @@ Dialog = (function(superClass) {
 
   Dialog._count = 0;
 
+  Dialog.dataStore = 'simpleDialog';
+
   Dialog.locales = {
     confirm: {
       buttons: ['ok', 'cancel']
@@ -54,7 +56,7 @@ Dialog = (function(superClass) {
         {
           text: Dialog.locales.message.button,
           callback: function(e) {
-            return $(e.target).closest(".simple-dialog").data("dialog").remove();
+            return $(e.target).closest(".simple-dialog").data(Dialog.dataStore).remove();
           }
         }
       ]
@@ -71,7 +73,7 @@ Dialog = (function(superClass) {
         text: Dialog.locales.confirm.buttons[0],
         callback: function(e) {
           var dialog;
-          dialog = $(e.target).closest(".simple-dialog").data("dialog");
+          dialog = $(e.target).closest(".simple-dialog").data(Dialog.dataStore);
           dialog.opts.callback(e, true);
           return dialog.remove();
         }
@@ -80,7 +82,7 @@ Dialog = (function(superClass) {
         cls: "btn-link",
         callback: function(e) {
           var dialog;
-          dialog = $(e.target).closest(".simple-dialog").data("dialog");
+          dialog = $(e.target).closest(".simple-dialog").data(Dialog.dataStore);
           dialog.opts.callback(e, false);
           return dialog.remove();
         }
@@ -112,7 +114,7 @@ Dialog = (function(superClass) {
     Dialog.removeAll();
     this._render();
     this._bind();
-    this.el.data("simpleDialog", this);
+    this.el.data(Dialog.dataStore, this);
     this._focus();
   }
 
@@ -215,7 +217,7 @@ Dialog = (function(superClass) {
   Dialog.removeAll = function() {
     return $(".simple-dialog").each(function() {
       var dialog;
-      dialog = $(this).data("dialog");
+      dialog = $(this).data(Dialog.dataStore);
       return dialog.remove();
     });
   };
@@ -226,7 +228,7 @@ Dialog = (function(superClass) {
 
 module.exports = Dialog;
 
-},{}]},{},[1]);
+},{}]},{},[]);
 
-return b(1);
+return b('dialog');
 }));

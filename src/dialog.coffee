@@ -10,6 +10,7 @@ class Dialog extends SimpleModule
     buttons: null
     focusButton: ".btn:first"
   @_count: 0
+  @dataStore: 'simpleDialog'
   @locales:
     confirm:
       buttons: ['ok', 'cancel']
@@ -23,7 +24,7 @@ class Dialog extends SimpleModule
         text: Dialog.locales.message.button
         callback: (e) ->
           $(e.target).closest(".simple-dialog")
-            .data("dialog").remove()
+            .data(Dialog.dataStore).remove()
       }]
     }, opts, {
       cls: "simple-dialog-message" + (if opts.cls then " #{opts.cls}" else '')
@@ -35,14 +36,14 @@ class Dialog extends SimpleModule
     buttons = [{
       text: Dialog.locales.confirm.buttons[0]
       callback: (e) ->
-        dialog = $(e.target).closest(".simple-dialog").data("dialog")
+        dialog = $(e.target).closest(".simple-dialog").data(Dialog.dataStore)
         dialog.opts.callback(e, true)
         dialog.remove()
     }, {
       text: Dialog.locales.confirm.buttons[1]
       cls: "btn-link"
       callback: (e) ->
-        dialog = $(e.target).closest(".simple-dialog").data("dialog")
+        dialog = $(e.target).closest(".simple-dialog").data(Dialog.dataStore)
         dialog.opts.callback(e, false)
         dialog.remove()
     }]
@@ -90,7 +91,7 @@ class Dialog extends SimpleModule
     Dialog.removeAll()
     @_render()
     @_bind()
-    @el.data("simpleDialog", @)
+    @el.data(Dialog.dataStore, @)
 
     @_focus()
 
@@ -178,7 +179,7 @@ class Dialog extends SimpleModule
 
   @removeAll: ->
     $(".simple-dialog").each () ->
-      dialog = $(@).data("dialog")
+      dialog = $(@).data(Dialog.dataStore)
       dialog.remove()
 
 module.exports = Dialog
