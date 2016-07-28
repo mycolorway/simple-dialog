@@ -36,6 +36,15 @@ Dialog = (function(superClass) {
     focusButton: ".btn:first"
   };
 
+  Dialog.locales = {
+    confirm: {
+      buttons: ['ok', 'cancel']
+    },
+    message: {
+      button: 'known'
+    }
+  };
+
   Dialog._count = 0;
 
   Dialog._tpl = {
@@ -174,7 +183,7 @@ Dialog.message = function(opts) {
 
 Dialog.message.buttons = [
   {
-    text: 'known',
+    text: Dialog.locales.message.button,
     callback: function(e) {
       return $(e.target).closest(".simple-dialog").data("dialog").remove();
     }
@@ -194,7 +203,7 @@ Dialog.confirm = function(opts) {
 
 Dialog.confirm.buttons = [
   {
-    text: 'ok',
+    text: Dialog.locales.confirm.buttons[0],
     callback: function(e) {
       var dialog;
       dialog = $(e.target).closest(".simple-dialog").data("dialog");
@@ -202,7 +211,7 @@ Dialog.confirm.buttons = [
       return dialog.remove();
     }
   }, {
-    text: 'cancel',
+    text: Dialog.locales.confirm.buttons[1],
     cls: "btn-link",
     callback: function(e) {
       var dialog;
