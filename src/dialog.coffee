@@ -92,6 +92,10 @@ class Dialog extends SimpleModule
     @_bind()
     @el.data("dialog", @)
 
+    @_focus()
+
+
+  _focus: ()->
     if @opts.buttons && @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
 
@@ -176,9 +180,5 @@ class Dialog extends SimpleModule
     $(".simple-dialog").each () ->
       dialog = $(@).data("dialog")
       dialog.remove()
-
-
-
-
 
 module.exports = Dialog

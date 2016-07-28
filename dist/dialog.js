@@ -113,10 +113,14 @@ Dialog = (function(superClass) {
     this._render();
     this._bind();
     this.el.data("dialog", this);
-    if (this.opts.buttons && this.opts.focusButton) {
-      this.buttonWrap.find(this.opts.focusButton).focus();
-    }
+    this._focus();
   }
+
+  Dialog.prototype._focus = function() {
+    if (this.opts.buttons && this.opts.focusButton) {
+      return this.buttonWrap.find(this.opts.focusButton).focus();
+    }
+  };
 
   Dialog.prototype._render = function() {
     var button, i, len, ref;
