@@ -112,7 +112,7 @@ Dialog = (function(superClass) {
     Dialog.removeAll();
     this._render();
     this._bind();
-    this.el.data("dialog", this);
+    this.el.data("simpleDialog", this);
     this._focus();
   }
 

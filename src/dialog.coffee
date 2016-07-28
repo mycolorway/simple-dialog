@@ -90,7 +90,7 @@ class Dialog extends SimpleModule
     Dialog.removeAll()
     @_render()
     @_bind()
-    @el.data("dialog", @)
+    @el.data("simpleDialog", @)
 
     @_focus()
 
