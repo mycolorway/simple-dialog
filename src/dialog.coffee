@@ -114,8 +114,6 @@ class Dialog extends SimpleModule
       if e.which is 27
         @remove()
 
-    $(window).on "resize.simple-dialog-#{@id}", (e) =>
-      @maxContentHeight = null
 
 
   _unbind: ->
@@ -124,53 +122,8 @@ class Dialog extends SimpleModule
     $(document).off(".simple-dialog-#{@id}")
     $(window).off(".simple-dialog-#{@id}")
 
-
-  _initContentScroll: ->
-    @_topShadow ||= do =>
-      $('<div class="content-top-shadow" />')
-        .appendTo @wrapper
-
-    @_bottomShadow ||= do =>
-      $('<div class="content-bottom-shadow" />')
-        .appendTo @wrapper
-
-    contentPosition = @contentEl.position()
-    contentW = @contentEl.width()
-    shadowH = @_bottomShadow.height()
-    @_topShadow.css
-      width: contentW
-      top: contentPosition.top
-      left: contentPosition.left
-    @_bottomShadow.css
-      width: contentW
-      top: contentPosition.top + @contentEl.innerHeight() - shadowH
-      left: contentPosition.left
-
-    @contentEl.css 'overflow-y': 'auto'
-      .css 'position', 'relative'
-
-    scrollHeight = @contentEl[0].scrollHeight
-    innerHeight =  @contentEl.innerHeight()
-    @contentEl.off 'scroll.simple-dialog'
-      .on 'scroll.simple-dialog', (e) =>
-        scrollTop = @contentEl.scrollTop()
-        topScrolling = scrollTop > 0
-        bottomScrolling = scrollHeight - scrollTop - innerHeight > 1
-        @wrapper.toggleClass 'top-scrolling', topScrolling
-          .toggleClass 'bottom-scrolling', bottomScrolling
-      .trigger 'scroll'
-
   setContent: (content) ->
     @contentWrap.html(content)
-
-    @contentEl = null
-    @titleEl = null
-    @buttonEl = null
-    @maxContentHeight = null
-    @_topShadow = null
-    @_bottomShadow = null
-
-
 
   remove: ->
     @trigger 'destroy'

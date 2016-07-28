@@ -127,16 +127,11 @@ Dialog = (function(superClass) {
         };
       })(this));
     }
-    $(document).on("keydown.simple-dialog-" + this.id, (function(_this) {
+    return $(document).on("keydown.simple-dialog-" + this.id, (function(_this) {
       return function(e) {
         if (e.which === 27) {
           return _this.remove();
         }
-      };
-    })(this));
-    return $(window).on("resize.simple-dialog-" + this.id, (function(_this) {
-      return function(e) {
-        return _this.maxContentHeight = null;
       };
     })(this));
   };
@@ -150,55 +145,8 @@ Dialog = (function(superClass) {
     return $(window).off(".simple-dialog-" + this.id);
   };
 
-  Dialog.prototype._initContentScroll = function() {
-    var contentPosition, contentW, innerHeight, scrollHeight, shadowH;
-    this._topShadow || (this._topShadow = (function(_this) {
-      return function() {
-        return $('<div class="content-top-shadow" />').appendTo(_this.wrapper);
-      };
-    })(this)());
-    this._bottomShadow || (this._bottomShadow = (function(_this) {
-      return function() {
-        return $('<div class="content-bottom-shadow" />').appendTo(_this.wrapper);
-      };
-    })(this)());
-    contentPosition = this.contentEl.position();
-    contentW = this.contentEl.width();
-    shadowH = this._bottomShadow.height();
-    this._topShadow.css({
-      width: contentW,
-      top: contentPosition.top,
-      left: contentPosition.left
-    });
-    this._bottomShadow.css({
-      width: contentW,
-      top: contentPosition.top + this.contentEl.innerHeight() - shadowH,
-      left: contentPosition.left
-    });
-    this.contentEl.css({
-      'overflow-y': 'auto'
-    }).css('position', 'relative');
-    scrollHeight = this.contentEl[0].scrollHeight;
-    innerHeight = this.contentEl.innerHeight();
-    return this.contentEl.off('scroll.simple-dialog').on('scroll.simple-dialog', (function(_this) {
-      return function(e) {
-        var bottomScrolling, scrollTop, topScrolling;
-        scrollTop = _this.contentEl.scrollTop();
-        topScrolling = scrollTop > 0;
-        bottomScrolling = scrollHeight - scrollTop - innerHeight > 1;
-        return _this.wrapper.toggleClass('top-scrolling', topScrolling).toggleClass('bottom-scrolling', bottomScrolling);
-      };
-    })(this)).trigger('scroll');
-  };
-
   Dialog.prototype.setContent = function(content) {
-    this.contentWrap.html(content);
-    this.contentEl = null;
-    this.titleEl = null;
-    this.buttonEl = null;
-    this.maxContentHeight = null;
-    this._topShadow = null;
-    return this._bottomShadow = null;
+    return this.contentWrap.html(content);
   };
 
   Dialog.prototype.remove = function() {
