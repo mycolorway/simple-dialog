@@ -106,10 +106,6 @@ __removeAll()__
 
 销毁所有dialog实例
 
-__setDefaultButton()__ Object
-
-设置默认的按钮参数，按钮对象如上定制
-
 #### 事件
 
 __destroy__
