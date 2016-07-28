@@ -4,7 +4,8 @@
   "homepage": "https://github.com/mycolorway/simple-dialog",
   "authors": [
     "tinyfive <wls860801@gmail.com>",
-    "kshift <kshift.lv@gmail.com>"
+    "kshift <kshift.lv@gmail.com>",
+    "frankfang <frankfang1990@gmail.com>"
   ],
   "description": "a customizable dialog widget",
   "main": "dist/dialog.js",

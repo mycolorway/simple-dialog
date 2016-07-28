@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git@github.com:mycolorway/simple-dialog.git"
   },
-  "author": "tinyfive",
+  "author": "tinyfive, frankfang",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mycolorway/simple-dialog/issues"
@@ -15,9 +15,18 @@
   "umd": {
     "name": "SimpleDialog",
     "dependencies": {
-      "cjs": ["jquery","simple-module"],
-      "global": ["jQuery","SimpleModule"],
-      "params": ["$", "SimpleDialog"]
+      "cjs": [
+        "jquery",
+        "simple-module"
+      ],
+      "global": [
+        "jQuery",
+        "SimpleModule"
+      ],
+      "params": [
+        "$",
+        "SimpleDialog"
+      ]
     }
   },
   "scripts": {
@@ -47,7 +56,8 @@
     "node-sass": "^3.8.0",
     "phantomjs-prebuilt": "^2.1.7",
     "through2": "^2.0.1",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.6.2",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
     "jquery": "^3.0.0",
