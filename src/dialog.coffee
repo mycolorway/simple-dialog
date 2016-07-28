@@ -9,14 +9,53 @@ class Dialog extends SimpleModule
     showRemoveButton: true
     buttons: null
     focusButton: ".btn:first"
+  @_count: 0
   @locales:
     confirm:
       buttons: ['ok', 'cancel']
     message:
       button: 'known'
 
+  @.message = (opts) ->
+    opts = $.extend(true,{
+      cls: "simple-dialog-message"
+      buttons: [{
+        text: Dialog.locales.message.button
+        callback: (e) ->
+          $(e.target).closest(".simple-dialog")
+            .data("dialog").remove()
+      }]
+    }, opts, {
+      cls: "simple-dialog-message" + (if opts.cls then " #{opts.cls}" else '')
+    })
 
-  @_count: 0
+    return new Dialog opts
+
+  @.confirm = (opts) ->
+    buttons = [{
+      text: Dialog.locales.confirm.buttons[0]
+      callback: (e) ->
+        dialog = $(e.target).closest(".simple-dialog").data("dialog")
+        dialog.opts.callback(e, true)
+        dialog.remove()
+    }, {
+      text: Dialog.locales.confirm.buttons[1]
+      cls: "btn-link"
+      callback: (e) ->
+        dialog = $(e.target).closest(".simple-dialog").data("dialog")
+        dialog.opts.callback(e, false)
+        dialog.remove()
+    }]
+    opts = $.extend({
+      callback: $.noop
+      cls: "simple-dialog-confirm"
+      buttons: buttons
+    }, opts, {
+      cls: "simple-dialog-confirm" + (if opts.cls then " #{opts.cls}" else '')
+    })
+
+    return new Dialog opts
+
 
   @_tpl:
     dialog: """
@@ -138,49 +177,8 @@ class Dialog extends SimpleModule
       dialog = $(@).data("dialog")
       dialog.remove()
 
-Dialog.message = (opts) ->
-  opts = $.extend(true,{
-    cls: "simple-dialog-message"
-    buttons: Dialog.message.buttons
-  }, opts, {
-    cls: "simple-dialog-message" + (if opts.cls then " #{opts.cls}" else '')
-  })
-
-  return new Dialog opts
-
-Dialog.message.buttons = [{
-  text: Dialog.locales.message.button
-  callback: (e) ->
-    $(e.target).closest(".simple-dialog")
-      .data("dialog").remove()
-}]
 
 
-Dialog.confirm = (opts) ->
-  opts = $.extend({
-    callback: $.noop
-    cls: "simple-dialog-confirm"
-    buttons: Dialog.confirm.buttons
-  }, opts, {
-    cls: "simple-dialog-confirm" + (if opts.cls then " #{opts.cls}" else '')
-  })
-
-  return new Dialog opts
-
-Dialog.confirm.buttons = [{
-  text: Dialog.locales.confirm.buttons[0]
-  callback: (e) ->
-    dialog = $(e.target).closest(".simple-dialog").data("dialog")
-    dialog.opts.callback(e, true)
-    dialog.remove()
-}, {
-  text: Dialog.locales.confirm.buttons[1]
-  cls: "btn-link"
-  callback: (e) ->
-    dialog = $(e.target).closest(".simple-dialog").data("dialog")
-    dialog.opts.callback(e, false)
-    dialog.remove()
-}]
 
 
 module.exports = Dialog

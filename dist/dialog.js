@@ -36,6 +36,8 @@ Dialog = (function(superClass) {
     focusButton: ".btn:first"
   };
 
+  Dialog._count = 0;
+
   Dialog.locales = {
     confirm: {
       buttons: ['ok', 'cancel']
@@ -45,7 +47,54 @@ Dialog = (function(superClass) {
     }
   };
 
-  Dialog._count = 0;
+  Dialog.message = function(opts) {
+    opts = $.extend(true, {
+      cls: "simple-dialog-message",
+      buttons: [
+        {
+          text: Dialog.locales.message.button,
+          callback: function(e) {
+            return $(e.target).closest(".simple-dialog").data("dialog").remove();
+          }
+        }
+      ]
+    }, opts, {
+      cls: "simple-dialog-message" + (opts.cls ? " " + opts.cls : '')
+    });
+    return new Dialog(opts);
+  };
+
+  Dialog.confirm = function(opts) {
+    var buttons;
+    buttons = [
+      {
+        text: Dialog.locales.confirm.buttons[0],
+        callback: function(e) {
+          var dialog;
+          dialog = $(e.target).closest(".simple-dialog").data("dialog");
+          dialog.opts.callback(e, true);
+          return dialog.remove();
+        }
+      }, {
+        text: Dialog.locales.confirm.buttons[1],
+        cls: "btn-link",
+        callback: function(e) {
+          var dialog;
+          dialog = $(e.target).closest(".simple-dialog").data("dialog");
+          dialog.opts.callback(e, false);
+          return dialog.remove();
+        }
+      }
+    ];
+    opts = $.extend({
+      callback: $.noop,
+      cls: "simple-dialog-confirm",
+      buttons: buttons
+    }, opts, {
+      cls: "simple-dialog-confirm" + (opts.cls ? " " + opts.cls : '')
+    });
+    return new Dialog(opts);
+  };
 
   Dialog._tpl = {
     dialog: "<div class=\"simple-dialog\">\n  <div class=\"simple-dialog-wrapper\">\n    <div class=\"simple-dialog-content\"></div>\n    <div class=\"simple-dialog-buttons\"></div>\n  </div>\n  <a class=\"simple-dialog-remove\" href=\"javascript:;\">\n    <i class=\"icon-cross\"><span>&#10005;</span></i>\n  </a>\n</div>",
@@ -170,57 +219,6 @@ Dialog = (function(superClass) {
   return Dialog;
 
 })(SimpleModule);
-
-Dialog.message = function(opts) {
-  opts = $.extend(true, {
-    cls: "simple-dialog-message",
-    buttons: Dialog.message.buttons
-  }, opts, {
-    cls: "simple-dialog-message" + (opts.cls ? " " + opts.cls : '')
-  });
-  return new Dialog(opts);
-};
-
-Dialog.message.buttons = [
-  {
-    text: Dialog.locales.message.button,
-    callback: function(e) {
-      return $(e.target).closest(".simple-dialog").data("dialog").remove();
-    }
-  }
-];
-
-Dialog.confirm = function(opts) {
-  opts = $.extend({
-    callback: $.noop,
-    cls: "simple-dialog-confirm",
-    buttons: Dialog.confirm.buttons
-  }, opts, {
-    cls: "simple-dialog-confirm" + (opts.cls ? " " + opts.cls : '')
-  });
-  return new Dialog(opts);
-};
-
-Dialog.confirm.buttons = [
-  {
-    text: Dialog.locales.confirm.buttons[0],
-    callback: function(e) {
-      var dialog;
-      dialog = $(e.target).closest(".simple-dialog").data("dialog");
-      dialog.opts.callback(e, true);
-      return dialog.remove();
-    }
-  }, {
-    text: Dialog.locales.confirm.buttons[1],
-    cls: "btn-link",
-    callback: function(e) {
-      var dialog;
-      dialog = $(e.target).closest(".simple-dialog").data("dialog");
-      dialog.opts.callback(e, false);
-      return dialog.remove();
-    }
-  }
-];
 
 module.exports = Dialog;
 
