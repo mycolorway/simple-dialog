@@ -15,10 +15,6 @@ class Dialog extends SimpleModule
 
   @_count: 0
 
-  @_mobile: do ->
-    ua = navigator.userAgent
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/.test ua
-
   @_tpl:
     dialog: """
       <div class="simple-dialog">

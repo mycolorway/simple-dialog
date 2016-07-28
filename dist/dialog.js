@@ -41,12 +41,6 @@ Dialog = (function(superClass) {
 
   Dialog._count = 0;
 
-  Dialog._mobile = (function() {
-    var ua;
-    ua = navigator.userAgent;
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/.test(ua);
-  })();
-
   Dialog._tpl = {
     dialog: "<div class=\"simple-dialog\">\n  <div class=\"simple-dialog-wrapper\">\n    <div class=\"simple-dialog-content\"></div>\n    <div class=\"simple-dialog-buttons\"></div>\n  </div>\n  <a class=\"simple-dialog-remove\" href=\"javascript:;\">\n    <i class=\"icon-cross\"><span>&#10005;</span></i>\n  </a>\n</div>",
     modal: "<div class=\"simple-dialog-modal\"></div>",
