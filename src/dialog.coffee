@@ -9,9 +9,6 @@ class Dialog extends SimpleModule
     showRemoveButton: true
     buttons: null
     focusButton: ".btn:first"
-    titleSelector: 'h3:first'
-    contentSelector: '.simple-dialog-content'
-    buttonSelector: '.simple-dialog-buttons'
 
   @_count: 0
 

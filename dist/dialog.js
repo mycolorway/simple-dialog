@@ -33,10 +33,7 @@ Dialog = (function(superClass) {
     cls: "",
     showRemoveButton: true,
     buttons: null,
-    focusButton: ".btn:first",
-    titleSelector: 'h3:first',
-    contentSelector: '.simple-dialog-content',
-    buttonSelector: '.simple-dialog-buttons'
+    focusButton: ".btn:first"
   };
 
   Dialog._count = 0;
