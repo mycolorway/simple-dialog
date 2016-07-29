@@ -100,6 +100,9 @@ class Dialog extends SimpleModule
     if @opts.buttons && @opts.focusButton
       @buttonWrap.find(@opts.focusButton).focus()
 
+  _toggleFullscreen: ()->
+    @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen
+
   _render: () ->
     @el = $(Dialog._tpl.dialog).addClass @opts.cls
     @wrapper = @el.find(".simple-dialog-wrapper")
@@ -108,7 +111,7 @@ class Dialog extends SimpleModule
     @buttonWrap = @el.find(".simple-dialog-buttons")
 
 
-    @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen
+    @_toggleFullscreen()
     if @opts.fullscreen
       $('body').addClass 'simple-dialog-scrollable'
 
