@@ -8,41 +8,45 @@
 - JQuery 2.0+
 - [Simple Module](https://github.com/mycolorway/simple-module)
 
-### 使用方法
+## 使用方法
 首先，需要在页面里引用相关脚本以及css
 
 ```html
-<link media="all" rel="stylesheet" type="text/css" href="path/to/dialog.css" />
+<link media="all" rel="stylesheet" type="text/css" href="path/to/simple-dialog.css" />
+
 <script type="text/javascript" src="path/to/jquery.min.js"></script>
-<script type="text/javascript" src="path/to/module.js"></script>
-<script type="text/javascript" src="path/to/dialog.js"></script>
+<script type="text/javascript" src="path/to/simple-module.js"></script>
+
+<script type="text/javascript" src="path/to/simple-dialog.js"></script>
 
 ```
 
-可以通过simple.dialog下的三个方法，实例化dialog组件
+实例化dialog组件
 
 ```js
-simple.dialog({
+new SimpleDialog({
   content: "<h4 class=dialog-title>hello dialog</h4><p>this is a demo</p>",
   modal: true
 });
+```
 
+同时我们提供了两个快捷方式：SimpleDialog.message 和 SimpleDialog.confirm
 
-simple.dialog.message({
+```js
+SimpleDialog.message({
   content: "hello message",
-  modal: true,
-  clickModalRemove: false
+  modal: true
 });
 
-simple.dialog.confirm({
+SimpleDialog.confirm({
   content: "hello confirm"
 });
 
 ```
 
-### API 文档
+## API 文档
 
-####初始化选项
+### 初始化选项
 
 __content__
 
@@ -59,10 +63,6 @@ Boolean，是否有遮罩层，默认为false
 __fullscreen__
 
 Boolean，是否全屏，有时手机上需要，默认为 false
-
-__clickModalRemove__
-
-Boolean，是否点击遮罩层自动销毁对话框，默认为true
 
 __cls__
 
@@ -82,35 +82,28 @@ Obejct/Array，需要显示哪些按钮，按钮如下定制：
 
 ```
 {
-  content: [String, 按钮显示的内容],
+  text: [String, 按钮显示的内容],
   callback: [Function，点击按钮触发的回调函数]
 }
 ```
 
-__contentSelector__
-
-String，默认值`.simple-dialog-content`。如果dialog的内容过长，超出了窗口高度，`contentSelector`对应的元素会作为滚动容器被设置一个最大高度，并且会初始化滚动阴影。
-注意，`contentSelector`对应的元素不能有padding、margin和border样式。
-
-__titleSelector__
-
-String，默认值`h3:first`。指定dialog的title元素，用来计算滚动容器的最大高度（如果标题在滚动容器的外面）。
-
-__buttonSelector__
-
-String，默认值`.simple-dialog-buttons`。指定dialog的button容器，用来计算滚动容器的最大高度（如果按钮在滚动容器的外面）。
-
-#### 方法
+### 类方法
 
 __removeAll()__
 
 销毁所有dialog实例
 
-__setDefaultButton()__ Object
+### 实例方法
 
-设置默认的按钮参数，按钮对象如上定制
+__setContent()__
 
-#### 事件
+设置内容
+
+__remove()__
+
+销毁实例
+
+### 事件
 
 __destroy__
 
@@ -120,3 +113,47 @@ __destroy__
 dialog.on 'destroy', ->
   # clean
 ```
+
+## Development
+
+Clone repository from github:
+
+```bash
+git clone https://github.com/mycolorway/simple-dialog.git
+```
+
+Install npm dependencies:
+
+```bash
+npm install
+```
+
+Run default gulp task to build project, which will compile source files, run test and watch file changes for you:
+
+```bash
+npm start
+```
+
+Now, you are ready to go.
+
+## Publish
+
+If you want to publish new version to npm and bower, please make sure all tests have passed before you publish new version, and you need do these preparations:
+
+* Check the version number in `bower.json` and `package.json`.
+
+* Add new release information in `CHANGELOG.md`. The format of markdown contents will matter, because build scripts will get version and release content from this file by regular expression. You can follow the format of the older release information.
+
+* Put your [personal API tokens](https://github.com/blog/1509-personal-api-tokens) in `/.token`, which is required by the build scripts to request [Github API](https://developer.github.com/v3/) for creating new release.
+
+* Commit changes and push.
+
+Now you can run `gulp publish` task, which will request Github API to create new release.
+
+If everything goes fine, you can see your release at [https://github.com/mycolorway/simple-select/releases](https://github.com/mycolorway/simple-select/releases). At the End you can publish new version to npm with the command:
+
+```bash
+npm publish
+```
+
+Please be careful with the last step, because you cannot delete or republish a release on npm.
