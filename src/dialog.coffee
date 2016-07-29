@@ -102,24 +102,14 @@ class Dialog extends SimpleModule
 
   _toggleFullscreen: ()->
     @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen
-
-  _render: () ->
-    @el = $(Dialog._tpl.dialog).addClass @opts.cls
-    @wrapper = @el.find(".simple-dialog-wrapper")
-    @removeButton = @el.find(".simple-dialog-remove")
-    @contentWrap = @el.find(".simple-dialog-content")
-    @buttonWrap = @el.find(".simple-dialog-buttons")
-
-
-    @_toggleFullscreen()
     if @opts.fullscreen
       $('body').addClass 'simple-dialog-scrollable'
 
+  _setWidth: ()->
     @el.css
       width: @opts.width
 
-    @contentWrap.append(@opts.content)
-
+  _renderButtons: ()->
     unless @opts.showRemoveButton
       @removeButton.remove()
 
@@ -142,12 +132,28 @@ class Dialog extends SimpleModule
           .on "click", button.callback
           .appendTo @buttonWrap
 
-    @el.appendTo("body")
-
+  _setModal: ()->
     if @opts.modal
       @modal = $(Dialog._tpl.modal).appendTo("body")
       @modal.css("cursor", "default") unless @opts.clickModalRemove
 
+  _render: () ->
+    @el = $(Dialog._tpl.dialog).addClass @opts.cls
+    @wrapper = @el.find(".simple-dialog-wrapper")
+    @removeButton = @el.find(".simple-dialog-remove")
+    @contentWrap = @el.find(".simple-dialog-content")
+    @buttonWrap = @el.find(".simple-dialog-buttons")
+
+    @_toggleFullscreen()
+    @_setWidth()
+
+    @contentWrap.append(@opts.content)
+
+    @_renderButtons()
+
+    @el.appendTo("body")
+
+    @_setModal()
 
   _bind: ->
     @removeButton.on "click.simple-dialog", (e) =>

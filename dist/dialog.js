@@ -38,8 +38,6 @@ Dialog = (function(superClass) {
 
   Dialog._count = 0;
 
-  Dialog.dataStore = 'simpleDialog';
-
   Dialog.locales = {
     confirm: {
       buttons: ['ok', 'cancel']
@@ -56,7 +54,7 @@ Dialog = (function(superClass) {
         {
           text: Dialog.locales.message.button,
           callback: function(e) {
-            return $(e.target).closest(".simple-dialog").data(Dialog.dataStore).remove();
+            return $(e.target).closest(".simple-dialog").data('simpleDialog').remove();
           }
         }
       ]
@@ -73,7 +71,7 @@ Dialog = (function(superClass) {
         text: Dialog.locales.confirm.buttons[0],
         callback: function(e) {
           var dialog;
-          dialog = $(e.target).closest(".simple-dialog").data(Dialog.dataStore);
+          dialog = $(e.target).closest(".simple-dialog").data('simpleDialog');
           dialog.opts.callback(e, true);
           return dialog.remove();
         }
@@ -82,7 +80,7 @@ Dialog = (function(superClass) {
         cls: "btn-link",
         callback: function(e) {
           var dialog;
-          dialog = $(e.target).closest(".simple-dialog").data(Dialog.dataStore);
+          dialog = $(e.target).closest(".simple-dialog").data('simpleDialog');
           dialog.opts.callback(e, false);
           return dialog.remove();
         }
@@ -114,7 +112,7 @@ Dialog = (function(superClass) {
     Dialog.removeAll();
     this._render();
     this._bind();
-    this.el.data(Dialog.dataStore, this);
+    this.el.data('simpleDialog', this);
     this._focus();
   }
 
@@ -124,29 +122,30 @@ Dialog = (function(superClass) {
     }
   };
 
-  Dialog.prototype._render = function() {
-    var button, i, len, ref;
-    this.el = $(Dialog._tpl.dialog).addClass(this.opts.cls);
-    this.wrapper = this.el.find(".simple-dialog-wrapper");
-    this.removeButton = this.el.find(".simple-dialog-remove");
-    this.contentWrap = this.el.find(".simple-dialog-content");
-    this.buttonWrap = this.el.find(".simple-dialog-buttons");
+  Dialog.prototype._toggleFullscreen = function() {
     this.el.toggleClass('simple-dialog-fullscreen', this.opts.fullscreen);
     if (this.opts.fullscreen) {
-      $('body').addClass('simple-dialog-scrollable');
+      return $('body').addClass('simple-dialog-scrollable');
     }
-    this.el.css({
+  };
+
+  Dialog.prototype._setWidth = function() {
+    return this.el.css({
       width: this.opts.width
     });
-    this.contentWrap.append(this.opts.content);
+  };
+
+  Dialog.prototype._renderButtons = function() {
+    var button, i, len, ref, results;
     if (!this.opts.showRemoveButton) {
       this.removeButton.remove();
     }
     if (!this.opts.buttons) {
       this.buttonWrap.remove();
-      this.buttonWrap = null;
+      return this.buttonWrap = null;
     } else {
       ref = this.opts.buttons;
+      results = [];
       for (i = 0, len = ref.length; i < len; i++) {
         button = ref[i];
         if (button === "close") {
@@ -159,16 +158,33 @@ Dialog = (function(superClass) {
           };
         }
         button = $.extend({}, button);
-        $(Dialog._tpl.button).addClass('btn').addClass(button.cls).html(button.text).on("click", button.callback).appendTo(this.buttonWrap);
+        results.push($(Dialog._tpl.button).addClass('btn').addClass(button.cls).html(button.text).on("click", button.callback).appendTo(this.buttonWrap));
       }
+      return results;
     }
-    this.el.appendTo("body");
+  };
+
+  Dialog.prototype._setModal = function() {
     if (this.opts.modal) {
       this.modal = $(Dialog._tpl.modal).appendTo("body");
       if (!this.opts.clickModalRemove) {
         return this.modal.css("cursor", "default");
       }
     }
+  };
+
+  Dialog.prototype._render = function() {
+    this.el = $(Dialog._tpl.dialog).addClass(this.opts.cls);
+    this.wrapper = this.el.find(".simple-dialog-wrapper");
+    this.removeButton = this.el.find(".simple-dialog-remove");
+    this.contentWrap = this.el.find(".simple-dialog-content");
+    this.buttonWrap = this.el.find(".simple-dialog-buttons");
+    this._toggleFullscreen();
+    this._setWidth();
+    this.contentWrap.append(this.opts.content);
+    this._renderButtons();
+    this.el.appendTo("body");
+    return this._setModal();
   };
 
   Dialog.prototype._bind = function() {
@@ -220,7 +236,7 @@ Dialog = (function(superClass) {
   Dialog.removeAll = function() {
     return $(".simple-dialog").each(function() {
       var dialog;
-      dialog = $(this).data(Dialog.dataStore);
+      dialog = $(this).data('simpleDialog');
       return dialog.remove();
     });
   };
