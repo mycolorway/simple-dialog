@@ -109,6 +109,8 @@ class Dialog extends SimpleModule
 
 
     @el.toggleClass 'simple-dialog-fullscreen', @opts.fullscreen
+    if @opts.fullscreen
+      $('body').addClass 'simple-dialog-scrollable'
 
     @el.css
       width: @opts.width
@@ -174,8 +176,6 @@ class Dialog extends SimpleModule
     @modal.remove() if @modal
     @el.remove()
     $('body').removeClass('simple-dialog-scrollable')
-
-
 
   @removeAll: ->
     $(".simple-dialog").each () ->
