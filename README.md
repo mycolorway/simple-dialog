@@ -8,7 +8,7 @@
 - JQuery 2.0+
 - [Simple Module](https://github.com/mycolorway/simple-module)
 
-### 使用方法
+## 使用方法
 首先，需要在页面里引用相关脚本以及css
 
 ```html
@@ -44,9 +44,9 @@ SimpleDialog.confirm({
 
 ```
 
-### API 文档
+## API 文档
 
-####初始化选项
+### 初始化选项
 
 __content__
 
@@ -87,13 +87,13 @@ Obejct/Array，需要显示哪些按钮，按钮如下定制：
 }
 ```
 
-#### 类方法
+### 类方法
 
 __removeAll()__
 
 销毁所有dialog实例
 
-#### 实例方法
+### 实例方法
 
 __setContent()__
 
@@ -103,7 +103,7 @@ __remove()__
 
 销毁实例
 
-#### 事件
+### 事件
 
 __destroy__
 
@@ -113,3 +113,47 @@ __destroy__
 dialog.on 'destroy', ->
   # clean
 ```
+
+## Development
+
+Clone repository from github:
+
+```bash
+git clone https://github.com/mycolorway/simple-dialog.git
+```
+
+Install npm dependencies:
+
+```bash
+npm install
+```
+
+Run default gulp task to build project, which will compile source files, run test and watch file changes for you:
+
+```bash
+npm start
+```
+
+Now, you are ready to go.
+
+## Publish
+
+If you want to publish new version to npm and bower, please make sure all tests have passed before you publish new version, and you need do these preparations:
+
+* Check the version number in `bower.json` and `package.json`.
+
+* Add new release information in `CHANGELOG.md`. The format of markdown contents will matter, because build scripts will get version and release content from this file by regular expression. You can follow the format of the older release information.
+
+* Put your [personal API tokens](https://github.com/blog/1509-personal-api-tokens) in `/.token`, which is required by the build scripts to request [Github API](https://developer.github.com/v3/) for creating new release.
+
+* Commit changes and push.
+
+Now you can run `gulp publish` task, which will request Github API to create new release.
+
+If everything goes fine, you can see your release at [https://github.com/mycolorway/simple-select/releases](https://github.com/mycolorway/simple-select/releases). At the End you can publish new version to npm with the command:
+
+```bash
+npm publish
+```
+
+Please be careful with the last step, because you cannot delete or republish a release on npm.
