@@ -4,7 +4,6 @@ class Dialog extends SimpleModule
     width: 450
     modal: false
     fullscreen: false
-    clickModalRemove: true
     cls: ""
     showRemoveButton: true
     buttons: null
@@ -135,7 +134,6 @@ class Dialog extends SimpleModule
   _setModal: ()->
     if @opts.modal
       @modal = $(Dialog._tpl.modal).appendTo("body")
-      @modal.css("cursor", "default") unless @opts.clickModalRemove
 
   _render: () ->
     @el = $(Dialog._tpl.dialog).addClass @opts.cls
@@ -160,7 +158,7 @@ class Dialog extends SimpleModule
       e.preventDefault()
       @remove()
 
-    if @modal and @opts.clickModalRemove
+    if @modal
       @modal.on "click.simple-dialog", (e) =>
         @remove()
 
@@ -172,7 +170,7 @@ class Dialog extends SimpleModule
 
   _unbind: ->
     @removeButton.off(".simple-dialog")
-    @modal.off(".simple-dialog") if @modal and @opts.clickModalRemove
+    @modal.off(".simple-dialog") if @modal
     $(document).off(".simple-dialog-#{@id}")
     $(window).off(".simple-dialog-#{@id}")
 

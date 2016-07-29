@@ -46,19 +46,6 @@ describe "dialog", ->
     modal.click()
     expect($(".simple-dialog-modal").length).equal(0)
 
-
-  it "should not remove when set clickModalRemove false and click modal", ->
-    dialog = new SimpleDialog
-      modal: true
-      clickModalRemove: false
-      content: "hello"
-
-    modal = $(".simple-dialog-modal")
-    expect(modal.length).equal(1)
-    modal.click()
-    expect($(".simple-dialog-modal").length).equal(1)
-
-
   it "should remove when click the button created by config [close]", ->
     dialog = new SimpleDialog
       modal: true
