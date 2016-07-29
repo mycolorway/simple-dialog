@@ -12,29 +12,33 @@
 首先，需要在页面里引用相关脚本以及css
 
 ```html
-<link media="all" rel="stylesheet" type="text/css" href="path/to/dialog.css" />
+<link media="all" rel="stylesheet" type="text/css" href="path/to/simple-dialog.css" />
+
 <script type="text/javascript" src="path/to/jquery.min.js"></script>
-<script type="text/javascript" src="path/to/module.js"></script>
-<script type="text/javascript" src="path/to/dialog.js"></script>
+<script type="text/javascript" src="path/to/simple-module.js"></script>
+
+<script type="text/javascript" src="path/to/simple-dialog.js"></script>
 
 ```
 
-可以通过simple.dialog下的三个方法，实例化dialog组件
+实例化dialog组件
 
 ```js
-simple.dialog({
+new SimpleDialog({
   content: "<h4 class=dialog-title>hello dialog</h4><p>this is a demo</p>",
   modal: true
 });
+```
 
+同时我们提供了两个快捷方式：SimpleDialog.message 和 SimpleDialog.confirm
 
-simple.dialog.message({
+```js
+SimpleDialog.message({
   content: "hello message",
-  modal: true,
-  clickModalRemove: false
+  modal: true
 });
 
-simple.dialog.confirm({
+SimpleDialog.confirm({
   content: "hello confirm"
 });
 
@@ -60,10 +64,6 @@ __fullscreen__
 
 Boolean，是否全屏，有时手机上需要，默认为 false
 
-__clickModalRemove__
-
-Boolean，是否点击遮罩层自动销毁对话框，默认为true
-
 __cls__
 
 String，给popover增加自定义的类
@@ -87,24 +87,21 @@ Obejct/Array，需要显示哪些按钮，按钮如下定制：
 }
 ```
 
-__contentSelector__
-
-String，默认值`.simple-dialog-content`。如果dialog的内容过长，超出了窗口高度，`contentSelector`对应的元素会作为滚动容器被设置一个最大高度，并且会初始化滚动阴影。
-注意，`contentSelector`对应的元素不能有padding、margin和border样式。
-
-__titleSelector__
-
-String，默认值`h3:first`。指定dialog的title元素，用来计算滚动容器的最大高度（如果标题在滚动容器的外面）。
-
-__buttonSelector__
-
-String，默认值`.simple-dialog-buttons`。指定dialog的button容器，用来计算滚动容器的最大高度（如果按钮在滚动容器的外面）。
-
-#### 方法
+#### 类方法
 
 __removeAll()__
 
 销毁所有dialog实例
+
+#### 实例方法
+
+__setContent()__
+
+设置内容
+
+__remove()__
+
+销毁实例
 
 #### 事件
 
