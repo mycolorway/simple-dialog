@@ -17,7 +17,7 @@ class Dialog extends SimpleModule
     message:
       button: 'known'
 
-  @.message = (opts) ->
+  @message = (opts) ->
     opts = $.extend(true,{
       cls: "simple-dialog-message"
       buttons: [{
@@ -32,7 +32,7 @@ class Dialog extends SimpleModule
 
     return new Dialog opts
 
-  @.confirm = (opts) ->
+  @confirm = (opts) ->
     buttons = [{
       text: Dialog.locales.confirm.buttons[0]
       callback: (e) ->
@@ -83,6 +83,8 @@ class Dialog extends SimpleModule
   constructor: (opts)->
     super
     @opts = $.extend {}, Dialog.opts, opts
+    @_locales = $.extend {}, Dialog.locales, @opts.locales
+
     if @opts.content is null
       throw new Error "[Dialog] - content shouldn't be empty"
 

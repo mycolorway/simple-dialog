@@ -1,15 +1,15 @@
 /**
- * simple-dialog v1.1.12
+ * simple-dialog v1.1.13
  * https://github.com/mycolorway/simple-dialog
  *
  * Copyright Mycolorway Design
  * Released under the MIT license
  * https://github.com/mycolorway/simple-dialog/license.html
  *
- * Date: 2016-07-28
+ * Date: 2016-07-29
  */
 body.simple-dialog-scrollable {
-  overflow-y: hidden !important; }
+  overflow: hidden !important; }
 
 .simple-dialog {
   position: fixed;
@@ -97,11 +97,16 @@ body.simple-dialog-scrollable {
   cursor: pointer; }
 
 .simple-dialog-fullscreen {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
   width: auto !important;
   height: auto !important;
   margin: 0 !important;
   overflow: auto; }
+  .simple-dialog-fullscreen .simple-dialog-wrapper {
+    box-sizing: border-box;
+    height: 100%; }
+    .simple-dialog-fullscreen .simple-dialog-wrapper .simple-dialog-content {
+      height: 100%; }

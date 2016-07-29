@@ -1,12 +1,12 @@
 /**
- * simple-dialog v1.1.12
+ * simple-dialog v1.1.13
  * https://github.com/mycolorway/simple-dialog
  *
  * Copyright Mycolorway Design
  * Released under the MIT license
  * https://github.com/mycolorway/simple-dialog/license.html
  *
- * Date: 2016-07-28
+ * Date: 2016-07-29
  */
 ;(function(root, factory) {
   if (typeof module === 'object' && module.exports) {
@@ -107,6 +107,7 @@ Dialog = (function(superClass) {
   function Dialog(opts) {
     Dialog.__super__.constructor.apply(this, arguments);
     this.opts = $.extend({}, Dialog.opts, opts);
+    this._locales = $.extend({}, Dialog.locales, this.opts.locales);
     if (this.opts.content === null) {
       throw new Error("[Dialog] - content shouldn't be empty");
     }
@@ -132,6 +133,9 @@ Dialog = (function(superClass) {
     this.contentWrap = this.el.find(".simple-dialog-content");
     this.buttonWrap = this.el.find(".simple-dialog-buttons");
     this.el.toggleClass('simple-dialog-fullscreen', this.opts.fullscreen);
+    if (this.opts.fullscreen) {
+      $('body').addClass('simple-dialog-scrollable');
+    }
     this.el.css({
       width: this.opts.width
     });
