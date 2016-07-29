@@ -16,7 +16,7 @@
   }
 }(this, function ($,SimpleDialog) {
 var define, module, exports;
-var b = require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"dialog":[function(require,module,exports){
+var b = require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"simple-dialog":[function(require,module,exports){
 var Dialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -29,7 +29,6 @@ Dialog = (function(superClass) {
     width: 450,
     modal: false,
     fullscreen: false,
-    clickModalRemove: true,
     cls: "",
     showRemoveButton: true,
     buttons: null,
@@ -166,10 +165,7 @@ Dialog = (function(superClass) {
 
   Dialog.prototype._setModal = function() {
     if (this.opts.modal) {
-      this.modal = $(Dialog._tpl.modal).appendTo("body");
-      if (!this.opts.clickModalRemove) {
-        return this.modal.css("cursor", "default");
-      }
+      return this.modal = $(Dialog._tpl.modal).appendTo("body");
     }
   };
 
@@ -194,7 +190,7 @@ Dialog = (function(superClass) {
         return _this.remove();
       };
     })(this));
-    if (this.modal && this.opts.clickModalRemove) {
+    if (this.modal) {
       this.modal.on("click.simple-dialog", (function(_this) {
         return function(e) {
           return _this.remove();
@@ -212,7 +208,7 @@ Dialog = (function(superClass) {
 
   Dialog.prototype._unbind = function() {
     this.removeButton.off(".simple-dialog");
-    if (this.modal && this.opts.clickModalRemove) {
+    if (this.modal) {
       this.modal.off(".simple-dialog");
     }
     $(document).off(".simple-dialog-" + this.id);
@@ -249,5 +245,5 @@ module.exports = Dialog;
 
 },{}]},{},[]);
 
-return b('dialog');
+return b('simple-dialog');
 }));

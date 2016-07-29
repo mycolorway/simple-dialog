@@ -17,7 +17,7 @@ module.exports = (config) ->
       'node_modules/jquery/dist/jquery.js'
       'node_modules/simple-module/dist/simple-module.js'
       'test/coverage-init.js'
-      'src/dialog.coffee',
+      'src/simple-dialog.coffee',
       'test/**/*.coffee'
     ]
 
@@ -30,7 +30,7 @@ module.exports = (config) ->
     # preprocess matching files before serving them to the browser
     # available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors:
-      'src/dialog.coffee': ['browserify']
+      'src/simple-dialog.coffee': ['browserify']
       'test/**/*.coffee': ['browserify']
 
 

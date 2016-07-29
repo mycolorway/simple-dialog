@@ -1,5 +1,5 @@
 expect = chai.expect
-SimpleDialog = require '../src/dialog'
+SimpleDialog = require '../src/simple-dialog'
 describe "dialog", ->
   it "should see dialog if everything is ok", ->
     expect(true).to.equal(true)
