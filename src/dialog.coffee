@@ -83,7 +83,6 @@ class Dialog extends SimpleModule
   constructor: (opts)->
     super
     @opts = $.extend {}, Dialog.opts, opts
-    @_locales = $.extend {}, Dialog.locales, @opts.locales
 
     if @opts.content is null
       throw new Error "[Dialog] - content shouldn't be empty"
