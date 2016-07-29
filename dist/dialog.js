@@ -107,7 +107,6 @@ Dialog = (function(superClass) {
   function Dialog(opts) {
     Dialog.__super__.constructor.apply(this, arguments);
     this.opts = $.extend({}, Dialog.opts, opts);
-    this._locales = $.extend({}, Dialog.locales, this.opts.locales);
     if (this.opts.content === null) {
       throw new Error("[Dialog] - content shouldn't be empty");
     }
