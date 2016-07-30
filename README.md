@@ -11,6 +11,8 @@
 
 A light-weight dialog component.
 
+[Demo](http://mycolorway.github.io/simple-dialog/demo.html)
+
 ## Dependencies
 
 - JQuery 3.0+
