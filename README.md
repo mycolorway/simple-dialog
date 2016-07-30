@@ -1,6 +1,13 @@
 # Simple Dialog
 
 [![Circle CI](https://circleci.com/gh/mycolorway/simple-dialog.png?style=badge)](https://circleci.com/gh/mycolorway/simple-dialog)
+[![Latest Version](https://img.shields.io/npm/v/simple-dialog.svg)](https://www.npmjs.com/package/simple-dialog)
+[![Build Status](https://img.shields.io/travis/mycolorway/simple-dialog.svg)](https://travis-ci.org/mycolorway/simple-dialog)
+[![Coveralls](https://img.shields.io/coveralls/mycolorway/simple-dialog.svg)](https://coveralls.io/github/mycolorway/simple-dialog)
+[![David](https://img.shields.io/david/mycolorway/simple-dialog.svg)](https://david-dm.org/mycolorway/simple-dialog)
+[![David](https://img.shields.io/david/dev/mycolorway/simple-dialog.svg)](https://david-dm.org/mycolorway/simple-dialog#info=devDependencies)
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/mycolorway/simple-dialog)
+
 
 A light-weight dialog component.
 
@@ -164,7 +171,7 @@ If you want to publish new version to npm and bower, please make sure all tests 
 
 Now you can run `gulp publish` task, which will request Github API to create new release.
 
-If everything goes fine, you can see your release at [https://github.com/mycolorway/simple-select/releases](https://github.com/mycolorway/simple-select/releases). At the End you can publish new version to npm with the command:
+If everything goes fine, you can see your release at [https://github.com/mycolorway/simple-dialog/releases](https://github.com/mycolorway/simple-dialog/releases). At the End you can publish new version to npm with the command:
 
 ```bash
 npm publish
