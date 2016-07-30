@@ -109,8 +109,10 @@ For example:
 
 ```
 {
-  text: [String, text on button],
-  callback: [Function，button click handler]
+  text: '42',
+  callback: function(e){
+		alert('You clicked 42 just now!')
+	}
 }
 ```
 
