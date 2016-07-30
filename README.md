@@ -18,6 +18,10 @@ A light-weight dialog component.
 - JQuery 3.0+
 - [Simple Module 3+](https://github.com/mycolorway/simple-module)
 
+## Compatibility
+
+IE 9+ and all the modern browsers because of the using of CSS transform.
+
 ## Usage
 
 Import simple-dialog dependencies and resources:
