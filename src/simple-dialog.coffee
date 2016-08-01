@@ -11,7 +11,8 @@ class Dialog extends SimpleModule
   @_count: 0
   @locales:
     confirm:
-      buttons: ['ok', 'cancel']
+      buttonOk: 'ok'
+      buttonCancel: 'cancel'
     message:
       button: 'known'
 
@@ -32,13 +33,13 @@ class Dialog extends SimpleModule
 
   @confirm = (opts) ->
     buttons = [{
-      text: Dialog.locales.confirm.buttons[0]
+      text: Dialog.locales.confirm.buttonOk
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data('simpleDialog')
         dialog.opts.callback(e, true)
         dialog.remove()
     }, {
-      text: Dialog.locales.confirm.buttons[1]
+      text: Dialog.locales.confirm.buttonCancel
       cls: "btn-link"
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data('simpleDialog')
