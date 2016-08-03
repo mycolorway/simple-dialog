@@ -1,5 +1,5 @@
 /**
- * simple-dialog v2.0.0
+ * simple_dialog v2.0.0
  * https://github.com/mycolorway/simple-dialog
  *
  * Copyright Mycolorway Design
