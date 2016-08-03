@@ -1,5 +1,5 @@
 
-## V2.0.0
+## V2.0.0 - 2016-08-03
 
 * Based on jQuery 3+ and SimpleModule 3+ now !
 * Simplify the options.
