@@ -1,6 +1,6 @@
 {
   "name": "simple-dialog",
-  "version": "1.1.13",
+  "version": "2.0.0",
   "description": "a simple dialog widget based on Simple Module",
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
       ],
       "params": [
         "$",
-        "SimpleDialog"
+        "SimpleModule"
       ]
     }
   },
@@ -54,7 +54,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sinon": "^1.0.5",
     "lodash": "^4.13.1",
-    "mocha": "^2.5.3",
+    "mocha": "^3.0.0",
     "node-sass": "^3.8.0",
     "phantomjs-prebuilt": "^2.1.7",
     "sinon": "^1.17.5",
@@ -63,7 +63,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "jquery": "~3.0.0",
+    "jquery": "~3.1.0",
     "simple-module": "~3.0.0"
   }
 }

@@ -1,12 +1,12 @@
 /**
- * simple-dialog v1.1.13
+ * simple-dialog v2.0.0
  * https://github.com/mycolorway/simple-dialog
  *
  * Copyright Mycolorway Design
  * Released under the MIT license
  * https://github.com/mycolorway/simple-dialog/license.html
  *
- * Date: 2016-07-29
+ * Date: 2016-08-3
  */
 body.simple-dialog-scrollable {
   overflow: hidden !important; }
@@ -15,6 +15,8 @@ body.simple-dialog-scrollable {
   position: fixed;
   left: 50%;
   top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: 400px;
   min-height: 1em;
@@ -28,48 +30,23 @@ body.simple-dialog-scrollable {
   .simple-dialog .simple-dialog-wrapper {
     padding: 20px;
     position: relative; }
-    .simple-dialog .simple-dialog-wrapper .content-top-shadow,
-    .simple-dialog .simple-dialog-wrapper .content-bottom-shadow {
-      display: block;
-      height: 10px;
-      width: 100%;
-      position: absolute;
-      box-shadow: inset 0 0 0 transparent;
-      -webkit-box-shadow: inset 0 0 0 transparent;
-      transition: 100ms box-shadow;
-      -webkit-transition: 100ms box-shadow; }
-    .simple-dialog .simple-dialog-wrapper .content-top-shadow {
-      top: 0;
-      left: 0; }
-    .simple-dialog .simple-dialog-wrapper .content-bottom-shadow {
-      bottom: 0;
-      left: 0; }
-    .simple-dialog .simple-dialog-wrapper.top-scrolling .content-top-shadow {
-      box-shadow: inset 0 6px 8px -6px rgba(0, 0, 0, 0.2);
-      -webkit-box-shadow: inset 0 6px 8px -6px rgba(0, 0, 0, 0.2); }
-    .simple-dialog .simple-dialog-wrapper.bottom-scrolling .content-bottom-shadow {
-      box-shadow: inset 0 -6px 8px -6px rgba(0, 0, 0, 0.2);
-      -webkit-box-shadow: inset 0 -6px 8px -6px rgba(0, 0, 0, 0.2); }
-  .simple-dialog .simple-dialog-content .simple-dialog-title {
-    font-size: 1.5em;
-    margin: 0 0 0.5em 0; }
   .simple-dialog .simple-dialog-buttons {
     padding: 20px 0 0 0; }
     .simple-dialog .simple-dialog-buttons:after {
       content: "";
       display: table;
       clear: both; }
-    .simple-dialog .simple-dialog-buttons .btn {
+    .simple-dialog .simple-dialog-buttons .button {
       float: left;
       margin: 0 10px 0 0;
       cursor: pointer; }
-      .simple-dialog .simple-dialog-buttons .btn:last-child {
+      .simple-dialog .simple-dialog-buttons .button:last-child {
         margin-right: 0; }
-      .simple-dialog .simple-dialog-buttons .btn.btn-link {
+      .simple-dialog .simple-dialog-buttons .button.button-link {
         border: none;
         background: none;
         color: #666666; }
-        .simple-dialog .simple-dialog-buttons .btn.btn-link:hover {
+        .simple-dialog .simple-dialog-buttons .button.button-link:hover {
           text-decoration: underline; }
   .simple-dialog .simple-dialog-remove {
     position: absolute;

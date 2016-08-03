@@ -81,7 +81,7 @@ describe "dialog", ->
 
     # this is bug of phantomjs
     # https://github.com/guard/guard-jasmine/issues/48
-    button = dialog.buttonWrap.find('.btn:first')
+    button = dialog.buttonWrap.find('.button:first')
     # expect(button.is(':focus')).toBe(true)
     expect(button[0] == document.activeElement).to.be.true
 

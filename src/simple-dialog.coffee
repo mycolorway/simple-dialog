@@ -1,4 +1,4 @@
-class Dialog extends SimpleModule
+class SimpleDialog extends SimpleModule
   @opts:
     content: null
     width: 450
@@ -7,7 +7,7 @@ class Dialog extends SimpleModule
     cls: ""
     showRemoveButton: true
     buttons: null
-    focusButton: ".btn:first"
+    focusButton: ".button:first"
   @_count: 0
   @locales:
     confirm:
@@ -20,7 +20,7 @@ class Dialog extends SimpleModule
     opts = $.extend(true,{
       cls: "simple-dialog-message"
       buttons: [{
-        text: Dialog.locales.message.button
+        text: opts.buttonText || SimpleDialog.locales.message.button
         callback: (e) ->
           $(e.target).closest(".simple-dialog")
             .data('simpleDialog').remove()
@@ -29,18 +29,18 @@ class Dialog extends SimpleModule
       cls: "simple-dialog-message" + (if opts.cls then " #{opts.cls}" else '')
     })
 
-    return new Dialog opts
+    return new SimpleDialog opts
 
   @confirm = (opts) ->
     buttons = [{
-      text: Dialog.locales.confirm.buttonOk
+      text: opts.confirmText || SimpleDialog.locales.confirm.buttonOk
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data('simpleDialog')
         dialog.opts.callback(e, true)
         dialog.remove()
     }, {
-      text: Dialog.locales.confirm.buttonCancel
-      cls: "btn-link"
+      text: opts.cancelText || SimpleDialog.locales.confirm.buttonCancel
+      cls: "button-link"
       callback: (e) ->
         dialog = $(e.target).closest(".simple-dialog").data('simpleDialog')
         dialog.opts.callback(e, false)
@@ -54,7 +54,7 @@ class Dialog extends SimpleModule
       cls: "simple-dialog-confirm" + (if opts.cls then " #{opts.cls}" else '')
     })
 
-    return new Dialog opts
+    return new SimpleDialog opts
 
 
   @_tpl:
@@ -81,14 +81,14 @@ class Dialog extends SimpleModule
 
   constructor: (opts)->
     super
-    @opts = $.extend {}, Dialog.opts, opts
+    @opts = $.extend {}, SimpleDialog.opts, opts
 
     if @opts.content is null
-      throw new Error "[Dialog] - content shouldn't be empty"
+      throw new Error "[SimpleDialog] - option content is required"
 
-    @id = ++ Dialog._count
+    @id = ++ SimpleDialog._count
 
-    Dialog.removeAll()
+    SimpleDialog.removeAll()
     @_render()
     @_bind()
     @el.data('simpleDialog', @)
@@ -125,8 +125,8 @@ class Dialog extends SimpleModule
 
         button = $.extend({}, button)
 
-        $(Dialog._tpl.button)
-          .addClass 'btn'
+        $(SimpleDialog._tpl.button)
+          .addClass 'button'
           .addClass button.cls
           .html button.text
           .on "click", button.callback
@@ -134,10 +134,10 @@ class Dialog extends SimpleModule
 
   _setModal: ()->
     if @opts.modal
-      @modal = $(Dialog._tpl.modal).appendTo("body")
+      @modal = $(SimpleDialog._tpl.modal).appendTo("body")
 
   _render: () ->
-    @el = $(Dialog._tpl.dialog).addClass @opts.cls
+    @el = $(SimpleDialog._tpl.dialog).addClass @opts.cls
     @wrapper = @el.find(".simple-dialog-wrapper")
     @removeButton = @el.find(".simple-dialog-remove")
     @contentWrap = @el.find(".simple-dialog-content")
@@ -190,4 +190,4 @@ class Dialog extends SimpleModule
       dialog = $(@).data('simpleDialog')
       dialog.remove()
 
-module.exports = Dialog
+module.exports = SimpleDialog
