@@ -22,7 +22,9 @@ createRelease = (done) ->
     return
 
   request
-    uri: "https://api.github.com/repos/#{pkg.githubOwner}/#{pkg.name}/releases"
+    uri: '''
+      https://api.github.com/repos/#{pkg.githubOwner}/#{pkg.githubName}/releases
+    '''
     method: 'POST'
     json: true
     body:
