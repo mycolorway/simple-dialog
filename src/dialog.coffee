@@ -233,7 +233,10 @@ class Dialog extends SimpleModule
   @removeAll: ->
     $(".simple-dialog").each () ->
       dialog = $(@).data("dialog")
-      dialog.remove()
+      if dialog
+        dialog.remove()
+      else
+        $(@).remove()
 
 
   @defaultButton:
