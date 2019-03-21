@@ -18,6 +18,7 @@ class Dialog extends SimpleModule
     clickModalRemove: true
     cls: ""
     showRemoveButton: true
+    escRemove: true
     buttons: ['close']
     focusButton: ".btn:first"
     titleSelector: 'h3:first'
@@ -122,8 +123,7 @@ class Dialog extends SimpleModule
         @remove()
 
     $(document).on "keydown.simple-dialog-#{@id}", (e) =>
-      if e.which is 27
-        @remove()
+      @remove() if e.which is 27 and @opts.escRemove
 
     $(window).on "resize.simple-dialog-#{@id}", (e) =>
       @maxContentHeight = null
